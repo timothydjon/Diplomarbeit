@@ -18,6 +18,23 @@ module.exports = {
       ...generateSpacings(1, 20),
       ...generateSpacings(),
     },
+    screens: {
+      minxl: { min: "1601px" },
+      xl: { max: "1600px" },
+      lg: { max: "1024px" },
+      md: { max: "860px" },
+      sm: { max: "500px" },
+    },
+    colors: {
+      grey: {
+        light: "#D9D9D9",
+        medium: "#6A6775",
+        dark: "#434547",
+      },
+      green: "#46D966",
+      brown: "#806C6C",
+      white: "#ffffff",
+    },
   },
   plugins: [],
 };

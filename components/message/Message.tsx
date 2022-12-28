@@ -2,11 +2,11 @@ import React from 'react'
 import IMessage from './Message.interface';
 
 const Message = (props: IMessage) => {
+    const {message, isSender,...rest} = props
   return (
-    <div>Message
-
-        <p>{props.sender}</p>
-        <h4>{props.content}</h4>
+    <div {...rest} className={`${isSender ? "bg-grey-dark text-left" : "bg-grey-light text-right"} border-y-2  `} >
+        <span>{message.sender}</span>
+        <p>{message.content}</p>
     </div>
   )
 }

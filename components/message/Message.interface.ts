@@ -1,6 +1,10 @@
 
 
 export default interface IMessage {
-    content: string,
-    sender: string,
+    message:{
+        content: string,
+        sender: string,
+    }
+    className?: string,
+    isSender?: boolean,
 }
