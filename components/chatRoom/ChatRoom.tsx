@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import React, { useEffect, useState } from 'react'
+import IChatRoom from './ChatRoom.interface'
 import socketClient from 'socket.io-client'
 
 interface Imessage{
@@ -42,7 +41,6 @@ useEffect(()=>{
 
 
   return(
-    
   <Layout title="Home | Next.js + TypeScript Example">
     <h1>Hello Next.js 👋</h1>
     <button onClick={()=>{handleClick("just testing")}}>testbutton</button>
@@ -51,3 +49,14 @@ useEffect(()=>{
 )}
 
 export default IndexPage
+
+
+const ChatRoom = () => {
+  return (
+    <div>ChatRoom
+    
+    </div>
+  )
+}
+
+export default ChatRoom
