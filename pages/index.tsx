@@ -1,53 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link'
+import React from 'react';
+import ChatRoom from '../components/chatRoom/ChatRoom';
 import Layout from '../components/Layout'
-import socketClient from 'socket.io-client'
+import { socket, SocketContext } from '../context/socket/SocketContext';
 
-interface Imessage{
-  sender: string;
-  content: string;
-}
 
-const SERVER = "http://127.0.0.1:8080";
 
 const IndexPage = () => {
-  const [messages, setMessages] = useState<Imessage>()
-  let socket = socketClient(SERVER);
-
-  socket.emit('connection', ()=>{
-    console.log("Connected to backend");
-  })
-
-  const handleClick = (content: string)=>{
-    console.log("testing");
-    socket.emit('test', {sender: "timy" ,content: content})
-  }
-
-const getMessages = ()=>{
-  fetch(SERVER+"/getMessages").then(res => res.json()).then((data)=>{setMessages(data)})
-}
-
-socket.on("reload", (arg)=>{
-  getMessages();
-  console.log("testevent")
-})
-
-useEffect(() => {
-  getMessages();
-}, [])
-
-useEffect(()=>{
-  console.log("Messages:",messages);
-}, [messages])
-
-
+  
   return(
-    
+    <SocketContext.Provider  value={socket}>
   <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <button onClick={()=>{handleClick("just testing")}}>testbutton</button>
-
+    <ChatRoom/>
   </Layout>
+  </SocketContext.Provider> 
 )}
 
 export default IndexPage

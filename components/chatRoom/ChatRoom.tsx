@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import IChatRoom from './ChatRoom.interface'
-import socketClient from 'socket.io-client'
+import { socket, SocketContext } from '../../context/socket/SocketContext'
 
 interface Imessage{
   sender: string;
   content: string;
 }
 
-const SERVER = "http://127.0.0.1:8080";
-
-const IndexPage = () => {
+const SERVER : string = process.env.REACT_APP_SOCKET_URL;
+console.log(SERVER)
+const ChatRoom = () => {
   const [messages, setMessages] = useState<Imessage>()
-  let socket = socketClient(SERVER);
 
   socket.emit('connection', ()=>{
     console.log("Connected to backend");
@@ -41,22 +40,10 @@ useEffect(()=>{
 
 
   return(
-  <Layout title="Home | Next.js + TypeScript Example">
+  <div>
     <h1>Hello Next.js 👋</h1>
-    <button onClick={()=>{handleClick("just testing")}}>testbutton</button>
-
-  </Layout>
-)}
-
-export default IndexPage
-
-
-const ChatRoom = () => {
-  return (
-    <div>ChatRoom
-    
+    <button className="bg-red-700" onClick={()=>{handleClick("just testing")}}>testbutton</button>
     </div>
-  )
-}
+)}
 
 export default ChatRoom
