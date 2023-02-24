@@ -18,3 +18,5 @@ const IndexPage: React.FC<Props> = ({ data }) => {
   );
 };
 
+
+export default IndexPage;
