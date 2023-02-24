@@ -6,6 +6,7 @@ const Login = (props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { setUser } = useContext(SessionContext);
+  const [name, setName] = useState("timy")
 
   const handleLogin = async () => {
     setLoading(true);
@@ -18,7 +19,7 @@ const Login = (props) => {
         },
         body: JSON.stringify({
           id: 1,
-          username: 'ttttt',
+          username: name,
           password: '1234',
           email: 'timy@timy.com',
         }),
@@ -46,6 +47,12 @@ const Login = (props) => {
       <button onClick={handleLogin} disabled={loading}>
         {loading ? 'Logging in...' : 'Login'}
       </button>
+      <input 
+        type="text" 
+        className=" mb-2 bg-brown text-white" 
+        placeholder='Enter a name'
+        onChange={(e) =>{setName(e.target.value)}}
+     />
     </div>
   );
 };
