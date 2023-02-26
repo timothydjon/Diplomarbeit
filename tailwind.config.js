@@ -31,7 +31,7 @@ module.exports = {
         medium: "#6A6775",
         dark: "#434547",
       },
-      green: "#46D966",
+      green: "#055935",
       brown: "#806C6C",
       white: "#ffffff",
     },
