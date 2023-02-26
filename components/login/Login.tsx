@@ -20,8 +20,8 @@ const Login = (props) => {
         body: JSON.stringify({
           id: 1,
           username: name,
-          password: '1234',
-          email: 'timy@timy.com',
+          password: 'password',
+          email: 'test@gmail.com',
         }),
         credentials: 'include',
       });
