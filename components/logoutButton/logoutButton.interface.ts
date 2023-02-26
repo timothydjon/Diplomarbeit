@@ -1,2 +1,3 @@
-export default interface ILogout{
+export default interface ILogoutButton{
+    className?: string
 }
