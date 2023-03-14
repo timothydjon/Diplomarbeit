@@ -11,7 +11,7 @@ interface Props {
   data: any;
 }
 
-const IndexPage: React.FC<Props> = ({ data }) => {
+const LoginPage: React.FC<Props> = ({ data }) => {
   return (
     <Login />
   );
@@ -39,4 +39,4 @@ const IndexPage: React.FC<Props> = ({ data }) => {
 //   };
 // };
 
-export default IndexPage;
+export default LoginPage;
