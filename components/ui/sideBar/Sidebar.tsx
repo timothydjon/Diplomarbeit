@@ -1,12 +1,14 @@
 import { useContext, useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import ISidebar from './Sidebar.interface';
+import ChatAccordion from '../chatAccordion/chatAccordion';
 
 
 
 const Sidebar = (props: ISidebar) => {
    return (
-    <div className="col-span-6 bg-green" >
+    <div className="col-span-5 bg-grey-dark h-full" >
+      <ChatAccordion />
       <h1>Sidebar</h1>
    </div>
   );

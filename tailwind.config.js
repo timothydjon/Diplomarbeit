@@ -18,6 +18,10 @@ module.exports = {
       gridTemplateColumns: {
         default: "repeat(24, minmax(0, 1fr))",
       },
+      gridColumn: {
+        "span-5": "span 5 / span 5",
+        "span-19": "span 19 / span 19",
+      },
     },
     spacings: {
       ...generateSpacings(1, 20),

@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import { SessionContext } from '../../context/sessionContext';
 import ILogoutButton from './chatsPage.interface'
-import Sidebar from '../sideBar/Sidebarr';
+import Sidebar from '../ui/sideBar/Sidebar';
 
 interface IResponse{
  
@@ -12,14 +12,11 @@ const chatsPage= (props: any) => {
 
 
   return (
-    <div className='w-full'>
-    <h1>test</h1>
-  <div className="grid-cols-default grid gap-5 w-full">
+    <div className='w-full h-screen'>
+  <div className="grid-cols-default grid w-full h-full">
     <Sidebar />
-    <div className='col-span-6 bg-grey-medium'>h</div>
-    <div className='col-span-6 bg-grey-medium'>h</div>
-    <div className='col-span-6 bg-grey-medium'>h</div>
-    <div className='col-span-6 bg-grey-medium'>h</div>
+    <div className='col-span-19 bg-grey-medium'>h</div>
+
 
     </div>
   </div>
