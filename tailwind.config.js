@@ -14,6 +14,11 @@ module.exports = {
     "./layouts/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    extend: {
+      gridTemplateColumns: {
+        default: "repeat(24, minmax(0, 1fr))",
+      },
+    },
     spacings: {
       ...generateSpacings(1, 20),
       ...generateSpacings(),
