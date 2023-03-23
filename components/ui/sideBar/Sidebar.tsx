@@ -7,7 +7,7 @@ import ChatAccordion from '../chatAccordion/chatAccordion';
 
 const Sidebar = (props: ISidebar) => {
    return (
-    <div className="col-span-5 bg-grey-dark h-full" >
+    <div className="col-span-5 bg-grey-dark px-3 h-full" >
       <ChatAccordion />
       <h1>Sidebar</h1>
    </div>

@@ -16,6 +16,7 @@ const [openIndex, setOpenIndex] = useState(-1);
   return (
 <div className='flex flex-col'>
 
+<div className='border-b-2 w-full my-4 border-grey-soft' />
   <button onClick={()=>{setOpenIndex(openIndex === 0 ? -1 : 0)}} className='flex  items-center'>
     <span className='text-3xl font-semibold text-white'>People</span>
     <div className='flex items-center' >
@@ -23,14 +24,15 @@ const [openIndex, setOpenIndex] = useState(-1);
     </div>
     </button>
 {/* TODO:  Remove test content and prrovide Create chat button and available chats */}
-    <div className={cn("flex flex-col overflow-hidden transition-all duration-300 px-6 pt-5", openIndex === 0 ? styles.openSubNav : styles.closedSubNav)}>
-      <CreateChatButton label="New Catroom" onClick={()=>{alert("test")}} />
+    <div className={cn("flex flex-col overflow-hidden transition-all duration-300 px-6", openIndex === 0 ? styles.openSubNav : styles.closedSubNav)}>
+      <CreateChatButton label="New Chatroom" onClick={()=>{alert("test")}} />
       <h5>test</h5>
       <h5>test</h5>
       <h5>test</h5>
       <h5>test</h5>
     </div>
 
+<div className='border-b-2 w-full my-4 border-grey-soft ' />
     
   <button onClick={()=>{setOpenIndex(openIndex === 1 ? -1 : 1)}} className='flex items-center '>
         <span className='text-3xl font-semibold text-white'>Rooms</span>
@@ -41,11 +43,13 @@ const [openIndex, setOpenIndex] = useState(-1);
   
 {/* TODO:  Remove test content and prrovide Create chat button and available chats */}
     <div className={cn("flex flex-col overflow-hidden transition-all duration-300", openIndex === 1 ? styles.openSubNav : styles.closedSubNav)}>
+      <CreateChatButton label="New Chatroom" onClick={()=>{alert("test")}} />
       <h5>test</h5>
       <h5>test</h5>
       <h5>test</h5>
       <h5>test</h5>
     </div>
+<div className='border-b-2 w-full my-4 border-grey-soft ' />
 </div>
   );
 };
