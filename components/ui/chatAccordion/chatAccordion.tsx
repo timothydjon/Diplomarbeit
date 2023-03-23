@@ -3,6 +3,7 @@ import IChatAccordion from './chatAccordion.interface'
 import Plus from "../../../public/assets/plus-icon.svg"
 import styles from "./chatAccordion.module.scss"
 import cn from "classnames"
+import CreateChatButton from '../createChatButton/CreateChatButton';
 
 const ChatAccordion = (props: IChatAccordion) => {
 const [openIndex, setOpenIndex] = useState(-1);
@@ -21,8 +22,9 @@ const [openIndex, setOpenIndex] = useState(-1);
     <div className={cn(styles.arrowDownClose, openIndex === 0 && styles.open, "flex items-center")} />
     </div>
     </button>
-
-    <div className={cn("flex flex-col overflow-hidden transition-all duration-300", openIndex === 0 ? styles.openSubNav : styles.closedSubNav)}>
+{/* TODO:  Remove test content and prrovide Create chat button and available chats */}
+    <div className={cn("flex flex-col overflow-hidden transition-all duration-300 px-6 pt-5", openIndex === 0 ? styles.openSubNav : styles.closedSubNav)}>
+      <CreateChatButton label="New Catroom" onClick={()=>{alert("test")}} />
       <h5>test</h5>
       <h5>test</h5>
       <h5>test</h5>
@@ -37,6 +39,7 @@ const [openIndex, setOpenIndex] = useState(-1);
     </div>
   </button>
   
+{/* TODO:  Remove test content and prrovide Create chat button and available chats */}
     <div className={cn("flex flex-col overflow-hidden transition-all duration-300", openIndex === 1 ? styles.openSubNav : styles.closedSubNav)}>
       <h5>test</h5>
       <h5>test</h5>
