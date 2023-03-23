@@ -20,7 +20,7 @@
   &:before {
     // transform: rotate(-45deg);
     left: 9px;
-    transform: translateX(15px) rotate(0deg);
+    transform: translateX(16px) rotate(0deg);
     top: -2px;
   }
 
@@ -33,10 +33,16 @@
 
   &.open {
     &:before {
-      transform: translateX(15px) rotate(-45deg);
+      transform: translateX(15px) rotate(90deg);
     }
     &:after {
-      transform: translateX(0px) rotate(45deg);
+      transform: translateX(0px) rotate(90deg);
     }
   }
+}
+.openSubNav{
+@apply max-h-96;
+}
+.closedSubNav{
+@apply max-h-0;
 }

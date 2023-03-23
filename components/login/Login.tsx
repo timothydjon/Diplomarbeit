@@ -26,7 +26,7 @@ const Login = (props) => {
         }),
         credentials: 'include',
       });
-
+      console.log("response:", response )
       const data = await response.json();
       console.log(data);
       setLoading(false);

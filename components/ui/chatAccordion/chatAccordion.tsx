@@ -5,7 +5,7 @@ import styles from "./chatAccordion.module.scss"
 import cn from "classnames"
 
 const ChatAccordion = (props: IChatAccordion) => {
-const [openIndex, setOpenIndex] = useState(0);
+const [openIndex, setOpenIndex] = useState(-1);
 
 
   const handleLogout = async () => {
@@ -14,19 +14,35 @@ const [openIndex, setOpenIndex] = useState(0);
 }
   return (
 <div className='flex flex-col'>
-  <div className='flex mb-20'>
-    <span>People</span>
-    <button onClick={()=>{setOpenIndex(0)}}>
-    <div className={cn(styles.arrowDownClose, openIndex === 0 && styles.open)} />
-    </button>
+
+  <button onClick={()=>{setOpenIndex(openIndex === 0 ? -1 : 0)}} className='flex  items-center'>
+    <span className='text-3xl font-semibold text-white'>People</span>
+    <div className='flex items-center' >
+    <div className={cn(styles.arrowDownClose, openIndex === 0 && styles.open, "flex items-center")} />
     </div>
-  <div>
-        <span>Rooms</span>
-    <button onClick={()=>{setOpenIndex(1)}}>
-    <div className={cn(styles.arrowDownClose, openIndex === 1 && styles.open)} />
     </button>
-  </div>
+
+    <div className={cn("flex flex-col overflow-hidden transition-all duration-300", openIndex === 0 ? styles.openSubNav : styles.closedSubNav)}>
+      <h5>test</h5>
+      <h5>test</h5>
+      <h5>test</h5>
+      <h5>test</h5>
+    </div>
+
+    
+  <button onClick={()=>{setOpenIndex(openIndex === 1 ? -1 : 1)}} className='flex items-center '>
+        <span className='text-3xl font-semibold text-white'>Rooms</span>
+    <div className='flex items-center' >
+    <div className={cn(styles.arrowDownClose, openIndex === 1 && styles.open, "flex items-center")} />
+    </div>
+  </button>
   
+    <div className={cn("flex flex-col overflow-hidden transition-all duration-300", openIndex === 1 ? styles.openSubNav : styles.closedSubNav)}>
+      <h5>test</h5>
+      <h5>test</h5>
+      <h5>test</h5>
+      <h5>test</h5>
+    </div>
 </div>
   );
 };
