@@ -1,12 +1,19 @@
 export default interface IChatRoom {
     data: {
         user: {
-            username: string
+            username: string,
+            user_id: number
         }
+        chat_id: number
     }
 
 }
 export interface Imessage{
-  sender: string;
-  content: string;
+    id: number,
+    user_id: number
+    chat_id: number,
+    msg: string,
+    msg_type: number,
+    created_on: string,
+    username: string
 }
