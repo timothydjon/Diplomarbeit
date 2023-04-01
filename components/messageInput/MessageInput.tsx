@@ -3,9 +3,10 @@ import { socket } from '../../context/socket/SocketContext';
 import IMessageInput from './MessageInput.interface';
 import SendBtn from "../../assets/Send"
 import EmojiSmile from '../../assets/EmojiSmile';
-import Clip from "../../assets/Clip"
+import Clip from "../../assets/src/clip.svg"
 import ThreeDots from '../../assets/ThreeDots';
 import Microphone from '../../assets/Microphone';
+import Smile from '../../assets/src/emojiSmile.svg'
 
 const MessageInput = (props: IMessageInput) => {
     const { user_id, chat_id, ...rest } = props
@@ -25,7 +26,7 @@ const MessageInput = (props: IMessageInput) => {
             <div className="flex w-full items-center">
                 <div className="overflow-hidden w-full bg-brown rounded-lg flex py-1 px-9">
                     <div>
-                        <EmojiSmile/>
+                        <Smile />
                     </div>
                     <input
                         type="text"
