@@ -70,6 +70,8 @@ useEffect(()=>{
 
 
   return(
+    <div className='w-full'>
+
   <div className="max-w-[300px] mx-auto flex flex-col justify-center">
         {!!user && <h1>Welcome, {user.username}!</h1>}
 
@@ -78,29 +80,30 @@ useEffect(()=>{
         className=" mb-2 bg-brown text-white" 
         placeholder='input a name'
         onChange={handleChange}
-     />
-
-    <button className="bg-green mb-2" onClick={()=>{handleClick(msgText)}}>testbutton</button> */}
+        />
+        
+      <button className="bg-green mb-2" onClick={()=>{handleClick(msgText)}}>testbutton</button> */}
     <div className="w-full flex flex-col">
 
     {messages.length > 0 && messages.map((msg, index)=>{
-        console.log("msg", msg)
-        return(
-            <>
+      console.log("msg", msg)
+      return(
+        <>
                 {!!user && <Message isSender={msg.user_id === user.id} message={msg} />}
             </>
         )
-    })}
+      })}
 {/*     <input 
         type="text" 
         className=" mb-2 bg-brown text-white" 
         placeholder='Message here'
         onChange={handleMsgChange}
-     /> */}
-     {user?.id && <MessageInput chat_id={1} user_id={user.id}/> }
+      /> */}
      <LogoutButton />
     </div>
     </div>
+     {user?.id && <MessageInput chat_id={1} user_id={user.id}/> }
+      </div>
 )}
 
 export default ChatRoom

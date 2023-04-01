@@ -13,6 +13,4 @@ export default svg => {
         </defs>
         </svg>
     )
-
-
 }
