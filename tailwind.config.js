@@ -14,9 +14,19 @@ module.exports = {
     "./layouts/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    extend: {
+      gridTemplateColumns: {
+        default: "repeat(24, minmax(0, 1fr))",
+      },
+      gridColumn: {
+        "span-5": "span 5 / span 5",
+        "span-19": "span 19 / span 19",
+      },
+    },
     spacings: {
       ...generateSpacings(1, 20),
       ...generateSpacings(),
+      ...generateSpacings(10, 600),
     },
     screens: {
       minxl: { min: "1601px" },
@@ -30,6 +40,7 @@ module.exports = {
         light: "#D9D9D9",
         medium: "#6A6775",
         dark: "#434547",
+        soft: "#7a797e",
       },
       green: "#055935",
       brown: "#806C6C",
