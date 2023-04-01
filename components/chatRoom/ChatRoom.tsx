@@ -85,8 +85,7 @@ useEffect(()=>{
       <button className="bg-green mb-2" onClick={()=>{handleClick(msgText)}}>testbutton</button> */}
     <div className="w-full flex flex-col">
 
-    {messages.length > 0 && messages.map((msg, index)=>{
-      console.log("msg", msg)
+    {messages.length > 0 && messages.map((msg, index) => {
       return(
         <>
                 {!!user && <Message isSender={msg.user_id === user.id} message={msg} />}

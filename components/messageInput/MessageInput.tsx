@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { socket } from '../../context/socket/SocketContext';
 import IMessageInput from './MessageInput.interface';
-import SendBtn from "../../assets/Send"
-import EmojiSmile from '../../assets/EmojiSmile';
+import SendBtn from "../../assets/src/send.svg"
 import Clip from "../../assets/src/clip.svg"
-import ThreeDots from '../../assets/ThreeDots';
-import Microphone from '../../assets/Microphone';
+import Microphone from '../../assets/src/microphone.svg';
 import Smile from '../../assets/src/emojiSmile.svg'
 
 const MessageInput = (props: IMessageInput) => {
@@ -39,8 +37,8 @@ const MessageInput = (props: IMessageInput) => {
                 <div className="bg-purple p-4 rounded-full flex items-center justify-center">
                     <button
                         onClick={() => { handleClick("test") }}>
+                    {msgText == "" ? <Microphone /> : <SendBtn />}
                     </button>
-                    {msgText == "" ? <Microphone className="" /> : <SendBtn className="" />}
                 </div>
             </div>
         </div>
