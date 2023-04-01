@@ -26,7 +26,7 @@ const Login = (props) => {
         }),
         credentials: 'include',
       });
-
+      console.log("response:", response )
       const data = await response.json();
       console.log(data);
       setLoading(false);
@@ -35,7 +35,7 @@ const Login = (props) => {
       setUser(data.user);
 
       // Redirect to the dashboard page after successful login
-      router.push('/test');
+      router.push('/chats');
     } catch (error) {
       console.error(error);
       setLoading(false);

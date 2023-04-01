@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
-import { SessionContext } from '../../context/sessionContext';
+import { SessionContext } from '../../../context/sessionContext';
 import ILogoutButton from './logoutButton.interface'
 
 interface IResponse{
