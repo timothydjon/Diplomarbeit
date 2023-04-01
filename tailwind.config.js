@@ -26,6 +26,7 @@ module.exports = {
     spacings: {
       ...generateSpacings(1, 20),
       ...generateSpacings(),
+      ...generateSpacings(10, 600),
     },
     screens: {
       minxl: { min: "1601px" },
