@@ -21,6 +21,7 @@ const SessionProvider = ({ children }) => {
         const data = await res.json();
         console.log("Session user: ", data.user)
         setUser(data.user);
+        console.log(user)
       } catch (error) {
         console.error(error);
         setUser(null);
