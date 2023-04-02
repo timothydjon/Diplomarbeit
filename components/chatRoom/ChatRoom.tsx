@@ -53,30 +53,36 @@ const ChatRoom = (props: IChatRoom) => {
   }, [])
 
 
-  return (
-    <div className="w-full h-screen">
-      <div className="grid grid-cols-6 w-full h-full">
-        <div className="col-span-1 border-r border-gray-300">
-          <Sidebar />
-        </div>
-        <div className="col-span-5 flex flex-col justify-between p-4 bg-gray-100">
-          <div className="w-full">
-            <div className="max-w-[300px] mx-auto flex flex-col justify-center">
-              {!!user && <h1>Welcome, {user.username}!</h1>}
-              <div className="w-full flex flex-col">
-                {messages.length > 0 &&
-                  messages.map((msg, index) => {
-                    return (
-                      <>
-                        {!!user && (
-                          <Message isSender={msg.user_id === user.id} message={msg} />
+useEffect(() => {
+  getMessagesByChatId(1);
+}, [])
+
+useEffect(()=>{
+  //console.log("Messages:",messages);
+}, [])
+
+
+
+return (
+      <div className="col-span-19 flex flex-col justify-between p-4 bg-gray-100">
+        <div className="w-full">
+          <div className=" mx-auto flex  flex-col justify-center">
+            {!!user && <h1>Welcome, {user.username}!</h1>}
+            <div className='flex flex-col-reverse h-[80vh] overflow-auto'>
+            <div className="w-full flex flex-col">
+              {messages.length > 0 &&
+                messages.map((msg, index) => {
+                  return (
+                    <>
+                      {!!user && (
+                        <Message isSender={msg.user_id === user.id} message={msg} />
                         )}
-                      </>
-                    );
-                  })}
-                <LogoutButton />
-              </div>
+                    </>
+                  );
+                })}
+              <LogoutButton />
             </div>
+                </div>
           </div>
 
           <div className="w-full border-t border-gray-300 p-4">
@@ -84,8 +90,8 @@ const ChatRoom = (props: IChatRoom) => {
           </div>
         </div>
       </div>
-    </div>
-  );
+
+);
 };
 
 export default ChatRoom

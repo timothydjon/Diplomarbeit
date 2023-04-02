@@ -44,7 +44,7 @@ const LogoutButton = (props: ILogoutButton) => {
       setUser(null);
 
       // Redirect to the dashboard page after successful login
-      router.push('/test');
+      router.push('/login');
     } catch (error) {
       console.error(error);
     }

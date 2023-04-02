@@ -12,12 +12,14 @@ interface Props {
 
 const IndexPage: React.FC<Props> = ({ data }) => {
   return (
+    <div>
+{/* 
     <SocketContext.Provider value={socket}>
-      <Layout title="Home | Next.js + TypeScript Example">
         <ChatRoom data={data} />
-      </Layout>
       
-    </SocketContext.Provider>
+    </SocketContext.Provider> */}
+    testing Closed
+    </div>
   );
 };
 

@@ -16,10 +16,10 @@ interface Props {
 const Chats: React.FC<Props> = ({ data }) => {
     useRequireAuth();
   return (
-    <div className="w-full">
+    <SocketContext.Provider value={socket}> 
+      <ChatsPage data={data}  />
+    </SocketContext.Provider>
 
-  <ChatsPage />
-    </div>
   );
 };
 
