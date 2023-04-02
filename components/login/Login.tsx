@@ -20,6 +20,7 @@ const Login = (props) => {
         headers: {
           'Content-Type': 'application/json',
         },
+        mode: "cors",
         body: JSON.stringify({
           email: email,
           password: password,
@@ -28,7 +29,6 @@ const Login = (props) => {
       });
       console.log("response:", response )
       const data = await response.json();
-      console.log(data);
       setLoading(false);
 
       // Update session state with user data
