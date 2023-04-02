@@ -6,9 +6,9 @@ const Message = (props: IMessage) => {
     const {message, isSender,...rest} = props
     console.log("msg", message)
   return (
-    <div {...rest} className={`${isSender ? styles.sender : styles.recipient } border-y-2  `} >
-        <span>{message.sender}</span>
-        <p>{message.content}</p>
+    <div {...rest} className={`${isSender ? styles.sender : styles.recipient } mb-8 rounded-2xl pl-4 pt-2 pb-3 pr-8 max-w-[500px] `} >
+        <p className='text-5 font-bold'>{message.username}</p>
+        <h3 className='break word'>{message.msg}</h3>
     </div>
   )
 }

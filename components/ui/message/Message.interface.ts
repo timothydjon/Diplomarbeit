@@ -1,10 +1,7 @@
-
+import { Imessage } from "../../chatRoom/ChatRoom.interface"
 
 export default interface IMessage {
-    message:{
-        content: string,
-        sender: string,
-    }
+    message: Imessage,
     className?: string,
     isSender?: boolean,
 }

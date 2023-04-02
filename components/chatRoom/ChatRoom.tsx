@@ -4,6 +4,8 @@ import { socket, SocketContext } from '../../context/socket/SocketContext'
 import Message from '../ui/message/Message'
 import { SessionContext } from '../../context/sessionContext';
 import LogoutButton from '../ui/logoutButton/logoutButton';
+import MessageInput from '../messageInput/MessageInput';
+import Sidebar from '../ui/sideBar/Sidebar';
 
 
 const SERVER : string = process.env.REACT_APP_SOCKET_URL;
@@ -13,26 +15,42 @@ const ChatRoom = (props: IChatRoom) => {
   const [userName, setUserName ] = useState <string>("timy");
   const [msgText, setMsgText ] = useState <string>("justadummy");
   const { user } = useContext(SessionContext);
-    // const { data: session } = useSession();
+  // const { data: session } = useSession();
   
-    
-
   socket.emit('connection', ()=>{
     console.log("Connected to backend");
   })
 
   const handleClick = (content: string)=>{
     console.log("testing");
-    socket.emit('test', {sender: user.username ,content: content})
+    //socket.emit('test', {sender: user.username ,content: content})
   }
 
-const getMessages = ()=>{
-  fetch(SERVER+"/getMessages").then(res => res.json()).then((data)=>{setMessages(data.items); console.log("len", messages.length)})
+const getMessagesByChatId = (/* chatId: number*/)=>{
+  fetch(`${SERVER}/getMessagesByChatId/${1}`, {
+      headers: {
+        Accept: "application/json",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-origin",
+        "If-None-Match": 'W/"1a0-gyQY2A4vzbFCGULjXBn25lhOcOQ"',
+      },
+      method: "GET",
+      mode: "cors",
+    })
+      .then(async (response) => {
+        const data = await response.json();
+        setMessages(data.result);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching profileList!");
+      });
 }
 
 socket.on("reload", (arg)=>{
-  getMessages();
-  console.log("testevent")
+  getMessagesByChatId();
+
 })
 
 const handleChange = (e: React.FormEvent<HTMLInputElement>)=>{
@@ -44,45 +62,46 @@ const handleMsgChange = (e: React.FormEvent<HTMLInputElement>)=>{
 
 
 useEffect(() => {
-  getMessages();
+  getMessagesByChatId();
 }, [])
 
 useEffect(()=>{
-  console.log("Messages:",messages);
-}, [messages])
+  //console.log("Messages:",messages);
+}, [])
 
 
-  return(
-  <div className="max-w-[300px] mx-auto flex flex-col justify-center">
-        {!!user && <h1>Welcome, {user.username}!</h1>}
 
-    <input 
-        type="text" 
-        className=" mb-2 bg-brown text-white" 
-        placeholder='input a name'
-        onChange={handleChange}
-     />
+return (
+      <div className="col-span-19 flex flex-col justify-between p-4 bg-gray-100">
+        <div className="w-full">
+          <div className=" mx-auto flex  flex-col justify-center">
+            {!!user && <h1>Welcome, {user.username}!</h1>}
+            <div className='flex flex-col-reverse h-[80vh] overflow-auto'>
+            <div className="w-full flex flex-col">
+              {messages.length > 0 &&
+                messages.map((msg, index) => {
+                  return (
+                    <>
+                      {!!user && (
+                        <Message isSender={msg.user_id === user.id} message={msg} />
+                        )}
+                    </>
+                  );
+                })}
+              <LogoutButton />
+            </div>
+                </div>
+          </div>
+        </div>
 
-    <button className="bg-green mb-2" onClick={()=>{handleClick(msgText)}}>testbutton</button>
-    <div className="w-full flex flex-col">
+        <div className="w-full border-t border-gray-300 p-4">
+          {user?.id && <MessageInput chat_id={1} user_id={user.id} />}
+        </div>
+      </div>
 
-    {messages.length > 0 && messages.map((msg, index)=>{
-        console.log("msg", msg)
-        return(
-            <>
-                {!!user && <Message isSender={msg.sender === user.username} message={msg} />}
-            </>
-        )
-    })}
-    <input 
-        type="text" 
-        className=" mb-2 bg-brown text-white" 
-        placeholder='Message here'
-        onChange={handleMsgChange}
-     />
-     <LogoutButton />
-    </div>
-    </div>
-)}
+);
+};
 
 export default ChatRoom
+
+
