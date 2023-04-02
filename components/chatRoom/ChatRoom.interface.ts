@@ -17,3 +17,8 @@ export interface Imessage{
     created_on: string,
     username: string
 }
+
+export interface Chats {
+    name: string,
+    created_on: string
+}
