@@ -16,6 +16,7 @@ const IndexPage: React.FC<Props> = ({ data }) => {
       <Layout title="Home | Next.js + TypeScript Example">
         <ChatRoom data={data} />
       </Layout>
+      
     </SocketContext.Provider>
   );
 };
