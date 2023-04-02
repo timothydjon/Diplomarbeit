@@ -12,7 +12,7 @@ const MessageInput = (props: IMessageInput) => {
     const [msgType, setMsgType] = useState<number>(0);
 
     const handleSendBtn = (content: string) => {
-        // handling send button
+        if (msgText == "") { return; }
         socket.emit('test', { msg: msgText, msg_type: msgType, user_id: user_id, chat_id: chat_id });
         setMsgText("");
     }
@@ -58,7 +58,7 @@ const MessageInput = (props: IMessageInput) => {
                 <div className="bg-purple p-4 rounded-full flex items-center justify-center">
                     <button
                         onClick={() => { handleSendBtn("test") }}>
-                        {msgText == "" ? <Microphone /> : <SendBtn />}
+                        {msgText == "" && false ? <Microphone /> : <SendBtn />}
                     </button>
                 </div>
             </div>

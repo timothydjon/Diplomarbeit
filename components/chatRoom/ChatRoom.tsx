@@ -6,7 +6,6 @@ import { SessionContext } from '../../context/sessionContext';
 import LogoutButton from '../ui/logoutButton/logoutButton';
 import MessageInput from '../messageInput/MessageInput';
 import Sidebar from '../ui/sideBar/Sidebar';
-import { getChatsByUserId } from '../../utils/getChatsByUserId';
 
 
 const SERVER: string = process.env.REACT_APP_SOCKET_URL;
@@ -14,8 +13,7 @@ const SERVER: string = process.env.REACT_APP_SOCKET_URL;
 const ChatRoom = (props: IChatRoom) => {
   const { user } = useContext(SessionContext);
   const [messages, setMessages] = useState<Imessage[]>([]);
-  const [rooms, setRooms] = useState<Chats[]>([]);
-  const [chats, setChats] = useState<Chats[]>([]);
+
 
   socket.emit('connection', () => {
     console.log("Connected to backend");
@@ -49,7 +47,6 @@ const ChatRoom = (props: IChatRoom) => {
 
   useEffect(() => {
     getMessagesByChatId(1);
-    user && console.log(getChatsByUserId(user.id))
   }, [])
 
 
@@ -73,11 +70,11 @@ return (
               {messages.length > 0 &&
                 messages.map((msg, index) => {
                   return (
-                    <>
+                    <React.Fragment key={index}>
                       {!!user && (
                         <Message isSender={msg.user_id === user.id} message={msg} />
-                        )}
-                    </>
+                      )}
+                    </React.Fragment>
                   );
                 })}
               <LogoutButton />

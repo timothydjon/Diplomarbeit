@@ -1,4 +1,4 @@
-import Chats from "../components/chatRoom/ChatRoom.interface";
+import { Chats } from "../components/chatRoom/ChatRoom.interface";
 
 
 const SERVER: string = process.env.REACT_APP_SOCKET_URL;
@@ -21,8 +21,7 @@ export const getChatsByUserId = async (userId: number): Promise<Chats[] | string
     if (!response.ok) {
       throw new Error('Error fetching Chats');
     }
-
-    const data = await response.json();
+    const data = await response.json(); 
     return data.result;
   } catch (error) {
     console.error('There was an error fetching Chats:', error);
