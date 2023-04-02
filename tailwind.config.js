@@ -43,6 +43,7 @@ module.exports = {
         soft: "#7a797e",
       },
       green: "#055935",
+      brightgreen: "#46D966",
       brown: "#806C6C",
       white: "#ffffff",
       purple: "#9974E7",

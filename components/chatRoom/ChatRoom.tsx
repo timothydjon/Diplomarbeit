@@ -5,6 +5,8 @@ import Message from '../ui/message/Message'
 import { SessionContext } from '../../context/sessionContext';
 import LogoutButton from '../ui/logoutButton/logoutButton';
 import MessageInput from '../messageInput/MessageInput';
+import styles from './ChatRoom.module.scss'
+import Sidebar from '../ui/sideBar/Sidebar';
 
 
 const SERVER : string = process.env.REACT_APP_SOCKET_URL;
@@ -69,40 +71,37 @@ useEffect(()=>{
 }, [])
 
 
-  return(
-    <div className='w-full'>
 
-  <div className="max-w-[300px] mx-auto flex flex-col justify-center">
-        {!!user && <h1>Welcome, {user.username}!</h1>}
-
-{/*     <input 
-        type="text" 
-        className=" mb-2 bg-brown text-white" 
-        placeholder='input a name'
-        onChange={handleChange}
-        />
-        
-      <button className="bg-green mb-2" onClick={()=>{handleClick(msgText)}}>testbutton</button> */}
-    <div className="w-full flex flex-col">
-
-    {messages.length > 0 && messages.map((msg, index) => {
-      return(
-        <>
-                {!!user && <Message isSender={msg.user_id === user.id} message={msg} />}
-            </>
-        )
-      })}
-{/*     <input 
-        type="text" 
-        className=" mb-2 bg-brown text-white" 
-        placeholder='Message here'
-        onChange={handleMsgChange}
-      /> */}
-     <LogoutButton />
-    </div>
-    </div>
-     {user?.id && <MessageInput chat_id={1} user_id={user.id}/> }
+return (
+      <div className={`${styles.container} col-span-19 flex flex-col justify-between p-4 bg-gray-100`}>
+        <div className="w-full">
+          <div className=" mx-auto flex  flex-col justify-center">
+            {!!user && <h1>Welcome, {user.username}!</h1>}
+            <div className='flex flex-col-reverse h-[80vh] overflow-auto'>
+            <div className="w-full flex flex-col">
+              {messages.length > 0 &&
+                messages.map((msg, index) => {
+                  return (
+                    <>
+                      {!!user && (
+                        <Message isSender={msg.user_id === user.id} message={msg} />
+                        )}
+                    </>
+                  );
+                })}
+              <LogoutButton />
+            </div>
+                </div>
+          </div>
+        </div>
+        <div className="w-full border-t border-gray-300 p-4">
+          {user?.id && <MessageInput chat_id={1} user_id={user.id} />}
+        </div>
       </div>
-)}
+
+);
+};
 
 export default ChatRoom
+
+
