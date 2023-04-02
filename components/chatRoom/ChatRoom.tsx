@@ -5,6 +5,7 @@ import Message from '../ui/message/Message'
 import { SessionContext } from '../../context/sessionContext';
 import LogoutButton from '../ui/logoutButton/logoutButton';
 import MessageInput from '../messageInput/MessageInput';
+import styles from './ChatRoom.module.scss'
 import Sidebar from '../ui/sideBar/Sidebar';
 
 
@@ -61,7 +62,7 @@ useEffect(()=>{
 
 
 return (
-      <div className="col-span-19 flex flex-col justify-between p-4 bg-gray-100">
+      <div className={`${styles.container} col-span-19 flex flex-col justify-between p-4 bg-gray-100`}>
         <div className="w-full">
           <div className=" mx-auto flex  flex-col justify-center">
             {!!user && <h1>Welcome, {user.username}!</h1>}
