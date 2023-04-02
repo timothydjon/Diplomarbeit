@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import IChatRoom, { Imessage } from './ChatRoom.interface'
 import { socket, SocketContext } from '../../context/socket/SocketContext'
-import Message from '../message/Message'
+import Message from '../ui/message/Message'
 import { SessionContext } from '../../context/sessionContext';
-import LogoutButton from '../logoutButton/logoutButton';
+import LogoutButton from '../ui/logoutButton/logoutButton';
 
 
 const SERVER : string = process.env.REACT_APP_SOCKET_URL;
