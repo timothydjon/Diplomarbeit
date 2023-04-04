@@ -81,12 +81,13 @@ return (
             <div className="w-full flex flex-col">
               {messages.length > 0 &&
                 messages.map((msg, index) => {
+                  // TODO: key prop needs fix
                   return (
-                    <>
+                    <React.Fragment key={index}>
                       {!!user && (
                         <Message isSender={msg.user_id === user.id} message={msg} />
                         )}
-                    </>
+                    </React.Fragment>
                   );
                 })}
               <LogoutButton />
