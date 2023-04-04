@@ -51,15 +51,6 @@ const ChatRoom = (props: IChatRoom) => {
   }, [])
 
 
-useEffect(() => {
-  getMessagesByChatId(1);
-}, [])
-
-useEffect(()=>{
-  //console.log("Messages:",messages);
-}, [])
-
-
 
 return (
       <div className={`${styles.container} col-span-19 flex flex-col justify-between p-4 bg-gray-100`}>

@@ -63,10 +63,14 @@ console.log(rooms)
 
       {/* TODO:  Remove test content and prrovide Create chat button and available chats */}
       <div className={cn("flex flex-col overflow-hidden transition-all duration-300", openIndex === 1 ? styles.openSubNav : styles.closedSubNav)}>
+
         <CreateChatButton label="New Chatroom" onClick={() => { alert("test") }} />
-        {rooms.map((room, index) => (
-          <RoomTeaser key={index} room={room}/>
-        ))}
+
+
+          {rooms.map((room, index) => (
+            <RoomTeaser key={index} room={room}/>
+          ))}
+
         <h5>test</h5>
         <h5>test</h5>
         <h5>test</h5>
