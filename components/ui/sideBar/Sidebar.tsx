@@ -6,11 +6,11 @@ import ChatAccordion from '../chatAccordion/chatAccordion';
 
 
 const Sidebar = (props: ISidebar) => {
-  const {children} = props
+  const {children, setRoomId} = props
 
    return (
     <div className="col-span-5 bg-grey-dark px-3 h-full relative" >
-      <ChatAccordion />
+      <ChatAccordion setRoomId={setRoomId} />
         {children}
    </div>
   );

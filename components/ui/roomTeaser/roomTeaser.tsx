@@ -3,11 +3,11 @@ import IRoomTeaser from './roomTeaser.interface';
 import { Chats } from '../../chatRoom/ChatRoom.interface';
 
 const RoomTeaser = (props: IRoomTeaser) => {
-  const { room } = props;
+  const { room, setRoomId, roomId } = props;
   console.log("room: ", room);
 
   return (
-    <button className="w-full flex items-center px-4 hover:bg-gray-700 focus:outline-none mb-5">
+    <button onClick={()=>{setRoomId(roomId)}} className="w-full flex items-center px-4 hover:bg-gray-700 focus:outline-none mb-5">
       <div className="h-16 w-16 rounded-full overflow-hidden">
         <img placeholder="blur" src="/assets/github_profilepic.png" className="w-full h-full object-cover" />
       </div>

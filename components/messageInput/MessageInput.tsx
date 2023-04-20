@@ -64,7 +64,7 @@ useOuterClick(el, (event) => {
             <div className="flex w-full items-center p-2 relative">
                         {
                             openEmoji && <div ref={el} className='absolute top-[-450px] left-0'>
-                                <Picker onEmojiClick={handleEmojiClick} theme='dark' />
+                                <Picker onEmojiClick={handleEmojiClick}  />
                                 </div>
                         }
                 <div className="overflow-hidden w-full bg-brown rounded-lg flex items-center p-1">

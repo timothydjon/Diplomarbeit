@@ -12,6 +12,7 @@ import Sidebar from '../ui/sideBar/Sidebar';
 const SERVER: string = process.env.REACT_APP_SOCKET_URL;
 
 const ChatRoom = (props: IChatRoom) => {
+  const {roomId} = props
   const { user } = useContext(SessionContext);
   const [messages, setMessages] = useState<Imessage[]>([]);
 
@@ -43,12 +44,12 @@ const ChatRoom = (props: IChatRoom) => {
   }
 
   socket.on("reload", (arg) => {
-    getMessagesByChatId(1);
+    getMessagesByChatId(roomId);
   })
 
   useEffect(() => {
-    getMessagesByChatId(1);
-  }, [])
+    getMessagesByChatId(roomId);
+  }, [roomId])
 
 
 
@@ -76,7 +77,7 @@ return (
           </div>
 
           <div className="w-full border-t border-gray-300 p-4">
-            {user?.id && <MessageInput chat_id={1} user_id={user.id} />}
+            {user?.id && <MessageInput chat_id={roomId} user_id={user.id} />}
           </div>
         </div>
       </div>

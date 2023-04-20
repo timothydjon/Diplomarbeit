@@ -10,9 +10,11 @@ import { SessionContext } from '../../../context/sessionContext';
 import { Chats } from '../../chatRoom/ChatRoom.interface';
 
 const ChatAccordion = (props: IChatAccordion) => {
+  const {setRoomId} = props
   const [openIndex, setOpenIndex] = useState(-1);
   const { user } = useContext(SessionContext);
   const [rooms, setRooms] = useState<Chats[]>([]);
+  const [chats, setChats] = useState<Chats[]>([]);
   const [lastMessage, setLastMessage] = useState<String[]>([])
 
   const handleLogout = async () => {
@@ -23,6 +25,7 @@ const ChatAccordion = (props: IChatAccordion) => {
       const result = await getChatsByUserId(2); // user.id
       if (Array.isArray(result)) {
         setRooms(result);
+        setChats(rooms)
       } else {
         // No Chats for given User found
         console.error(result);
@@ -47,7 +50,17 @@ console.log(rooms)
       {/* TODO:  Remove test content and prrovide Create chat button and available chats */}
       <div className={cn("flex flex-col overflow-hidden transition-all duration-300 px-6", openIndex === 0 ? styles.openSubNav : styles.closedSubNav)}>
         <CreateChatButton label="New Chat" onClick={() => { alert("test") }} />
-        <h5>test</h5>
+  
+          {rooms.map((room, index) => (
+            <React.Fragment key={index}>
+            <RoomTeaser roomId={1} setRoomId={setRoomId} key={index} room={room}/>
+            <RoomTeaser roomId={2} setRoomId={setRoomId} key={index} room={room}/>
+            <RoomTeaser roomId={1} setRoomId={setRoomId} key={index} room={room}/>
+            <RoomTeaser roomId={1} setRoomId={setRoomId} key={index} room={room}/>
+            </React.Fragment>
+          ))}
+
+      <h5>test</h5>
         <h5>test</h5>
         <h5>test</h5>
       </div>
@@ -68,7 +81,7 @@ console.log(rooms)
 
 
           {rooms.map((room, index) => (
-            <RoomTeaser key={index} room={room}/>
+            <RoomTeaser roomId={1} setRoomId={setRoomId} key={index} room={room}/>
           ))}
 
         <h5>test</h5>

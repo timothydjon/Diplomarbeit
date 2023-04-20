@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { SessionContext } from '../../context/sessionContext';
 import ILogoutButton from './chatsPage.interface'
@@ -13,18 +13,22 @@ interface IResponse{
 
 const ChatsPage = (props) => {
   const [newChatOpen, setNewChatOpen] = useState(false)
+  const [roomId, setRoomId] = useState(1);
 
+  useEffect(()=>{
+    console.log("idchanged:", roomId)
+  }, [roomId])
   
   return (
     <div className="w-full h-screen">
       <div className="grid grid-cols-default w-full h-full">
         <div className="col-span-5 border-r border-gray-300">
-          <Sidebar>
+          <Sidebar setRoomId={setRoomId}>
           <button onClick={()=>{setNewChatOpen((prev)=>!prev)}}>test</button>
-            <NewChatOverlay setIsOpen={()=>{setNewChatOpen(false)}} isOpen={newChatOpen} />
+            <NewChatOverlay setRoomId={setRoomId} setIsOpen={()=>{setNewChatOpen(false)}} isOpen={newChatOpen} />
           </Sidebar>
         </div>
-          <ChatRoom data={props.data} />
+          <ChatRoom roomId={roomId} data={props.data} />
       </div>
     </div>
   );

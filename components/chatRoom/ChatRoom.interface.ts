@@ -1,4 +1,5 @@
 export default interface IChatRoom {
+    roomId: number,
     data: {
         user: {
             username: string,
