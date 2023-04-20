@@ -27,7 +27,6 @@ const Login = (props) => {
         }),
         credentials: 'include',
       });
-      console.log("response:", response )
       const data = await response.json();
       setLoading(false);
 
@@ -75,7 +74,7 @@ const Login = (props) => {
             id="password"
             type="password"
             placeholder="Enter your password"
-            onChange={(e) =>{setPassword(e.target.value); console.log(e.target.value)}}
+            onChange={(e) =>{ setPassword(e.target.value); }}
             onKeyDown={(event) => {if (event.key === 'Enter') {handleLogin();}}}
           />
         </div>
