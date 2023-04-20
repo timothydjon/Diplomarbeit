@@ -9,7 +9,7 @@ const CreateChatButton = (props: ICreateChatButton) => {
 
 
   return (
-<button {...rest} className='rounded-2xl py-2 overflow-hidden bg-grey-soft text-white' onClick={onClick}>
+<button {...rest} className='rounded-2xl py-2 overflow-hidden bg-grey-soft text-white mb-5' onClick={onClick}>
     {label}
 </button>
   );

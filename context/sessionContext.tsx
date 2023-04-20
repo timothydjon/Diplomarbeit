@@ -15,13 +15,13 @@ const SessionProvider = ({ children }) => {
       try {
         const res = await fetch(`${SERVER}/getSession`, {
           method: "POST",
-          credentials: "include"
+          credentials: "include",
+          mode: "cors"
         });
 
         const data = await res.json();
         console.log("Session user: ", data.user)
         setUser(data.user);
-        console.log(user)
       } catch (error) {
         console.error(error);
         setUser(null);

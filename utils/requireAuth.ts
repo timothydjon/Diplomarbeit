@@ -5,7 +5,7 @@ import { SessionContext } from '../context/sessionContext';
 export const useRequireAuth = () => {
   const router = useRouter();
   const { user } = useContext(SessionContext);
-  console.log("requieAuth userdata: ", user);
+  //console.log("requieAuth userdata: ", user);
 
   useEffect(() => {
     // const currentPage = router.pathname;
