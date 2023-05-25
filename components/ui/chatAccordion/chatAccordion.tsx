@@ -53,17 +53,10 @@ console.log(rooms)
   
           {rooms.map((room, index) => (
             <React.Fragment key={index}>
-            <RoomTeaser roomId={1} setRoomId={setRoomId} key={index} room={room}/>
-            <RoomTeaser roomId={2} setRoomId={setRoomId} key={index} room={room}/>
-            <RoomTeaser roomId={1} setRoomId={setRoomId} key={index} room={room}/>
-            <RoomTeaser roomId={1} setRoomId={setRoomId} key={index} room={room}/>
+            <RoomTeaser roomId={room.id} setRoomId={setRoomId} key={index} room={room}/>
             </React.Fragment>
           ))}
-
-      <h5>test</h5>
-        <h5>test</h5>
-        <h5>test</h5>
-      </div>
+     </div>
 
       <div className='border-b-2 w-full my-4 border-grey-soft ' />
 
@@ -81,13 +74,9 @@ console.log(rooms)
 
 
           {rooms.map((room, index) => (
-            <RoomTeaser roomId={1} setRoomId={setRoomId} key={index} room={room}/>
+            <RoomTeaser roomId={room.id} setRoomId={setRoomId} key={index} room={room}/>
           ))}
-
-        <h5>test</h5>
-        <h5>test</h5>
-        <h5>test</h5>
-      </div>
+     </div>
       <div className='border-b-2 w-full my-4 border-grey-soft ' />
     </div>
   );

@@ -29,10 +29,10 @@ const LogoutButton = (props: ILogoutButton) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: 1,
-          username: name,
-          password: 'password',
-          email: 'test@gmail.com',
+          id: null,
+          username: null,
+          password: null,
+          email: null,
         }),
         credentials: 'include',
       });
@@ -43,7 +43,7 @@ const LogoutButton = (props: ILogoutButton) => {
       // Update session state with user data
       setUser(null);
 
-      // Redirect to the dashboard page after successful login
+      // Redirect to the dashboard page after successful logout
       router.push('/login');
     } catch (error) {
       console.error(error);

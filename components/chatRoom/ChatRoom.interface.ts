@@ -20,6 +20,7 @@ export interface Imessage{
 }
 
 export interface Chats {
+    id: number,
     lastMessage: string
     name: string,
     created_on: string
