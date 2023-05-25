@@ -23,7 +23,7 @@ const ChatsPage = (props) => {
     <div className="w-full h-screen">
       <div className="grid grid-cols-default w-full h-full">
         <div className="col-span-5 border-r border-gray-300">
-          <Sidebar setRoomId={setRoomId}>
+          <Sidebar setRoomId={setRoomId} setNewChatOpen={setNewChatOpen}>
           <button onClick={()=>{setNewChatOpen((prev)=>!prev)}}>test</button>
             <NewChatOverlay setRoomId={setRoomId} setIsOpen={()=>{setNewChatOpen(false)}} isOpen={newChatOpen} />
           </Sidebar>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import User from './profile.interface'
 import { socket, SocketContext } from '../../context/socket/SocketContext'
-import Message from '../message/Message'
+// import Message from '../message/Message'
 import { SessionContext } from '../../context/sessionContext';
 
 

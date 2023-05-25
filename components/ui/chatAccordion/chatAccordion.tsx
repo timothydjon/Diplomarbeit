@@ -10,7 +10,7 @@ import { SessionContext } from '../../../context/sessionContext';
 import { Chats } from '../../chatRoom/ChatRoom.interface';
 
 const ChatAccordion = (props: IChatAccordion) => {
-  const {setRoomId} = props
+  const {setRoomId, setNewChatOpen} = props
   const [openIndex, setOpenIndex] = useState(-1);
   const { user } = useContext(SessionContext);
   const [rooms, setRooms] = useState<Chats[]>([]);
@@ -22,7 +22,7 @@ const ChatAccordion = (props: IChatAccordion) => {
 
   useEffect(() => {
     const fetchChats = async () => {
-      const result = await getChatsByUserId(2); // user.id
+      const result = await getChatsByUserId(user.id); // user.id
       if (Array.isArray(result)) {
         setRooms(result);
         setChats(rooms)
@@ -49,7 +49,7 @@ console.log(rooms)
       </button>
       {/* TODO:  Remove test content and prrovide Create chat button and available chats */}
       <div className={cn("flex flex-col overflow-hidden transition-all duration-300 px-6", openIndex === 0 ? styles.openSubNav : styles.closedSubNav)}>
-        <CreateChatButton label="New Chat" onClick={() => { alert("test") }} />
+        <CreateChatButton label="New Chatroom" onClick={()=>{setNewChatOpen((prev)=>{return !prev})}} />
   
           {rooms.map((room, index) => (
             <React.Fragment key={index}>
@@ -70,7 +70,7 @@ console.log(rooms)
       {/* TODO:  Remove test content and prrovide Create chat button and available chats */}
       <div className={cn("flex flex-col overflow-hidden transition-all duration-300", openIndex === 1 ? styles.openSubNav : styles.closedSubNav)}>
 
-        <CreateChatButton label="New Chatroom" onClick={() => { alert("test") }} />
+        <CreateChatButton label="New Chatroom" onClick={()=>{setNewChatOpen((prev)=>{return !prev})}} />
 
 
           {rooms.map((room, index) => (

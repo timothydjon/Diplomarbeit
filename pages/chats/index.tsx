@@ -12,6 +12,7 @@ const SERVER: string = process.env.REACT_APP_SOCKET_URL;
 interface Props {
   data: any;
 }
+// TODO: wrap contextproviderr over this 
 
 const Chats: React.FC<Props> = ({ data }) => {
     useRequireAuth();

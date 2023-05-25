@@ -62,7 +62,7 @@ return (
             <div className="w-full flex flex-col">
               {messages.length > 0 &&
                 messages.map((msg, index) => {
-                  // TODO: key prop needs fix
+                  // TODO: key prop needs fix use created_on in key
                   return (
                     <React.Fragment key={index}>
                       {!!user && (
