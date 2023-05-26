@@ -1,15 +1,16 @@
 import { useContext, useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { SessionContext } from '../../context/sessionContext';
-
+import Image from 'next/image';
+import AnimatedLogo from '../../assets/src/VIKTIG/viktig-loading-animation-better-res.gif'
 const Login = (props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { setUser } = useContext(SessionContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showAnimation, setShowAnimation] = useState(false);
   const emailInputRef = useRef(null);
-
 
   const handleLogin = async () => {
     setLoading(true);
@@ -29,17 +30,26 @@ const Login = (props) => {
       });
       const data = await response.json();
       setLoading(false);
-
-      // Update session state with user data
       setUser(data.user);
+      setShowAnimation(true);
 
-      // Redirect to the dashboard page after successful login
-      router.push('/chats');
     } catch (error) {
       console.error(error);
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (showAnimation) {
+      const timer = setTimeout(() => {
+        setShowAnimation(false);
+        router.push('/chats');
+      }, 2000);
+
+      // Clean up on unmount
+      return () => clearTimeout(timer);
+    }
+  }, [showAnimation, router]);
 
   useEffect(() => {
     // Set focus on email input field when component mounts
@@ -48,45 +58,48 @@ const Login = (props) => {
 
   return (
     <div className="bg-grey-medium h-screen flex items-center justify-center">
-      <div className="bg-grey-light shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Welcome to <span className="">VIKTIG</span></h1>
+      {showAnimation ? (
+        <Image src={AnimatedLogo} alt="Loading Animation" width={150} height={150}/> 
+      ) : (
+        <div className="bg-grey-light shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+          <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Welcome to <span className="">VIKTIG</span></h1>
 
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            type="text"
-            placeholder="Enter your email"
-            onChange={(e) => setEmail(e.target.value)}
-            ref={emailInputRef}
-            
-          />
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              type="text"
+              placeholder="Enter your email"
+              onChange={(e) => setEmail(e.target.value)}
+              ref={emailInputRef}
+
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              onChange={(e) => { setPassword(e.target.value); }}
+              onKeyDown={(event) => { if (event.key === 'Enter') { handleLogin(); } }}
+            />
+          </div>
+          <button
+            className={`text-2xl font-bold text-gray-800 mb-6 text-center`}
+            onClick={handleLogin}
+            disabled={loading}
+          >
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
         </div>
-        <div className="mb-6">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            type="password"
-            placeholder="Enter your password"
-            onChange={(e) =>{ setPassword(e.target.value); }}
-            onKeyDown={(event) => {if (event.key === 'Enter') {handleLogin();}}}
-          />
-        </div>
-        <button
-          className={`text-2xl font-bold text-gray-800 mb-6 text-center`}
-          onClick={handleLogin}
-          disabled={loading}
-        >
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-      </div>
-    </div>
+      )}</div>
   );
 }
 
