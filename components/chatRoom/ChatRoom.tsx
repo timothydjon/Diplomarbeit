@@ -39,20 +39,24 @@ const ChatRoom = (props: IChatRoom) => {
   }
 
   useEffect(() => {
+    // when the component mounts, join the chat room
+    socket.emit('join_room', roomId);
+  
     getMessagesByChatId(roomId);
-
+    
     const newMessageHandler = (newMessage) => {
       if (newMessage.chat_id === roomId) {
         setMessages((messages) => [...messages, newMessage]);
       }
     };
-
-    socket.on("send_message", newMessageHandler);
-
+    
+    socket.on("new_message", newMessageHandler);
+  
     return () => {
-      socket.off("send_message", newMessageHandler);
+      socket.off("new_message", newMessageHandler);
     };
   }, [roomId]);
+  
 
 
 const addMessage = (newMessage: Imessage) => {

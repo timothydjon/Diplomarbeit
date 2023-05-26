@@ -28,11 +28,11 @@ const MessageInput = (props: IMessageInput) => {
 
     const handleSendBtn = (content: string) => {
         if (msgText == "") { return; }
-        const newMessage = { msg: msgText, msg_type: 0, user_id: user_id, chat_id: chat_id, username: user.username }; 
+        const newMessage = { msg: msgText, msg_type: 0, user_id: user_id, chat_id: chat_id, username: user.username };
         socket.emit('send_message', newMessage);
-        addMessage(newMessage);
         setMsgText("");
-      }
+    }
+    
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         // handle Enter from keyboard
