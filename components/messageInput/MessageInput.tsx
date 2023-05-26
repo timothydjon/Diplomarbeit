@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import { socket } from '../../context/socket/SocketContext';
 import IMessageInput from './MessageInput.interface';
 import SendBtn from "../../assets/src/send.svg"
@@ -8,6 +8,7 @@ import Emoji from '../../assets/src/emojiSmile.svg'
 // import EmojiPicker from 'emoji-picker-react';
 import { useOuterClick } from 'react-outer-click';
 import dynamic from 'next/dynamic';
+import { SessionContext } from '../../context/sessionContext';
 
 const Picker = dynamic(
   () => {
@@ -18,7 +19,8 @@ const Picker = dynamic(
 
 
 const MessageInput = (props: IMessageInput) => {
-    const { user_id, chat_id, ...rest } = props
+    const { user_id, chat_id, addMessage, ...rest } = props
+    const { user } = useContext(SessionContext);
     const [msgText, setMsgText] = useState<string>("");
     const [msgType, setMsgType] = useState<number>(0);
     const [openEmoji, setOpenEmoji] = useState(false);
@@ -26,9 +28,11 @@ const MessageInput = (props: IMessageInput) => {
 
     const handleSendBtn = (content: string) => {
         if (msgText == "") { return; }
-        socket.emit('test', { msg: msgText, msg_type: msgType, user_id: user_id, chat_id: chat_id });
+        const newMessage = { msg: msgText, msg_type: 0, user_id: user_id, chat_id: chat_id, username: user.username }; 
+        socket.emit('send_message', newMessage);
+        addMessage(newMessage);
         setMsgText("");
-    }
+      }
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         // handle Enter from keyboard
@@ -99,3 +103,4 @@ useOuterClick(el, (event) => {
 }
 
 export default MessageInput
+
