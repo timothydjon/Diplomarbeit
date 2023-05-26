@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { SessionContext } from '../../context/sessionContext';
 import Image from 'next/image';
 import AnimatedLogo from '../../assets/src/VIKTIG/viktig-loading-animation-better-res.gif'
+
 const Login = (props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -75,7 +76,7 @@ const Login = (props) => {
               placeholder="Enter your email"
               onChange={(e) => setEmail(e.target.value)}
               ref={emailInputRef}
-
+              onKeyDown={(event) => { if (event.key === 'Enter') { handleLogin(); } }}
             />
           </div>
           <div className="mb-6">
