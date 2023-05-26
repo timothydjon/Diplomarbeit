@@ -39,9 +39,7 @@ const ChatRoom = (props: IChatRoom) => {
   }
 
   useEffect(() => {
-    // when the component mounts, join the chat room
     socket.emit('join_room', roomId);
-  
     getMessagesByChatId(roomId);
     
     const newMessageHandler = (newMessage) => {
@@ -87,7 +85,7 @@ return (
           </div>
 
           <div className="w-full border-t border-gray-300 p-4">
-          {user?.id && <MessageInput chat_id={roomId} user_id={user.id} addMessage={addMessage} />}
+          {user?.id && <MessageInput chat_id={roomId} user_id={user.id} />}
           </div>
         </div>
       </div>

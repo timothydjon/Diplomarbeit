@@ -19,7 +19,7 @@ const Picker = dynamic(
 
 
 const MessageInput = (props: IMessageInput) => {
-    const { user_id, chat_id, addMessage, ...rest } = props
+    const { user_id, chat_id, ...rest } = props
     const { user } = useContext(SessionContext);
     const [msgText, setMsgText] = useState<string>("");
     const [msgType, setMsgType] = useState<number>(0);
