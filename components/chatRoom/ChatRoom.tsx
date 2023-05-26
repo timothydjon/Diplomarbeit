@@ -43,10 +43,12 @@ const ChatRoom = (props: IChatRoom) => {
     getMessagesByChatId(roomId);
     
     const newMessageHandler = (newMessage) => {
+      console.log(newMessage.created_on); //logs
       if (newMessage.chat_id === roomId) {
         setMessages((messages) => [...messages, newMessage]);
       }
     };
+    
     
     socket.on("new_message", newMessageHandler);
   
