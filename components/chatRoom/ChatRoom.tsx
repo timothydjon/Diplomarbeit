@@ -16,13 +16,8 @@ const ChatRoom = (props: IChatRoom) => {
   const { user } = useContext(SessionContext);
   const [messages, setMessages] = useState<Imessage[]>([]);
 
-
-  socket.emit('connection', () => {
-    console.log("Connected to backend");
-  })
-
-  const getMessagesByChatId = (chatId: number) => {
-    fetch(`${SERVER}/getMessagesByChatId/${chatId}`, {
+  const getMessagesByChatId = (roomId: number) => {
+    fetch(`${SERVER}/getMessagesByChatId/${roomId}`, {
       headers: {
         Accept: "application/json",
         "Accept-Language": "en-US,en;q=0.5",
@@ -43,15 +38,28 @@ const ChatRoom = (props: IChatRoom) => {
       });
   }
 
-  socket.on("reload", (arg) => {
-    getMessagesByChatId(roomId);
-  })
-
   useEffect(() => {
+    socket.emit('join_room', roomId);
     getMessagesByChatId(roomId);
-  }, [roomId])
+    
+    const newMessageHandler = (newMessage) => {
+      if (newMessage.chat_id === roomId) {
+        setMessages((messages) => [...messages, newMessage]);
+      }
+    };
+    
+    socket.on("new_message", newMessageHandler);
+  
+    return () => {
+      socket.off("new_message", newMessageHandler);
+    };
+  }, [roomId]);
+  
 
 
+const addMessage = (newMessage: Imessage) => {
+  setMessages(prevMessages => [...prevMessages, newMessage]);
+}
 
 return (
       <div className={`${styles.container} col-span-19 flex flex-col justify-between p-4 bg-gray-100`}>
@@ -77,7 +85,7 @@ return (
           </div>
 
           <div className="w-full border-t border-gray-300 p-4">
-            {user?.id && <MessageInput chat_id={roomId} user_id={user.id} />}
+          {user?.id && <MessageInput chat_id={roomId} user_id={user.id} />}
           </div>
         </div>
       </div>
