@@ -13,7 +13,7 @@ interface IResponse{
 
 const ChatsPage = (props) => {
   const [newChatOpen, setNewChatOpen] = useState(false)
-  const [roomId, setRoomId] = useState(1);
+  const [roomId, setRoomId] = useState(0);
 
   useEffect(()=>{
     console.log("idchanged:", roomId)

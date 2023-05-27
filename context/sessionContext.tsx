@@ -22,11 +22,14 @@ const SessionProvider = ({ children }) => {
         });
 
         const data = await res.json();
-        console.log("Session user: ", data.user)
         setUser(data.user);
+        if (!data.user) {
+          router.push('/login');
+        }
       } catch (error) {
         console.error(error);
         setUser(null);
+        router.push('/login');
       }
     };
 
