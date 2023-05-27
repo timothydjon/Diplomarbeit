@@ -1,4 +1,3 @@
-// sessionContext.js
 import React, { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
@@ -7,6 +6,9 @@ export const SessionContext = createContext(null);
 
 const SessionProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [lastMessage, setLastMessage] = useState("");
+  const [lastMessageSent, setLastMessageSent] = useState("");
+  
   const router = useRouter();
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const SessionProvider = ({ children }) => {
   }, []);
 
   return (
-    <SessionContext.Provider value={{ user, setUser }}>
+    <SessionContext.Provider value={{ user, setUser, lastMessage, setLastMessage, lastMessageSent, setLastMessageSent }}>
       {children}
     </SessionContext.Provider>
   );

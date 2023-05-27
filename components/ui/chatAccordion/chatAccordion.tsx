@@ -24,7 +24,6 @@ const ChatAccordion = (props: IChatAccordion) => {
     const fetchChats = async () => {
       const result = await getChatsByUserId(user.id); // user.id
       if (Array.isArray(result)) {
-        console.log(result)
         setRooms(result);
         setChats(rooms)
       } else {

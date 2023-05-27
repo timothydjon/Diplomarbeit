@@ -25,4 +25,5 @@ export interface Chats {
     name: string,
     created_on: string
     last_message: string
+    last_message_sent: string
 }
