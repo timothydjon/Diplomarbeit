@@ -11,7 +11,7 @@ import { Chats } from '../../chatRoom/ChatRoom.interface';
 
 const ChatAccordion = (props: IChatAccordion) => {
   const {setRoomId, setNewChatOpen} = props
-  const [openIndex, setOpenIndex] = useState(-1);
+  const [openIndex, setOpenIndex] = useState(1);
   const { user } = useContext(SessionContext);
   const [rooms, setRooms] = useState<Chats[]>([]);
   const [chats, setChats] = useState<Chats[]>([]);
@@ -37,7 +37,6 @@ const ChatAccordion = (props: IChatAccordion) => {
     }
   }, [user]);
 
-console.log(rooms)
   return (
     <div className='flex flex-col'>
       <div className='border-b-2 w-full my-4 border-grey-soft' />
@@ -72,10 +71,12 @@ console.log(rooms)
 
         <CreateChatButton label="New Chatroom" onClick={()=>{setNewChatOpen((prev)=>{return !prev})}} />
 
+      {rooms
+        .sort((a, b) => new Date(b.last_message_sent).getTime() - new Date(a.last_message_sent).getTime())
+        .map((room, index) => (
+          <RoomTeaser roomId={room.id} setRoomId={setRoomId} key={index} room={room}/>
+      ))}
 
-          {rooms.map((room, index) => (
-            <RoomTeaser roomId={room.id} setRoomId={setRoomId} key={index} room={room}/>
-          ))}
      </div>
       <div className='border-b-2 w-full my-4 border-grey-soft ' />
     </div>

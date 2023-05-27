@@ -48,6 +48,7 @@ const ChatRoom = (props: IChatRoom) => {
       }
     };
     
+    
     socket.on("new_message", newMessageHandler);
   
     return () => {
