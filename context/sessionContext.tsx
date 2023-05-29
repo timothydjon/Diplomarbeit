@@ -10,6 +10,7 @@ const SessionProvider = ({ children }) => {
   const [lastMessageSent, setLastMessageSent] = useState("");
   
   const router = useRouter();
+  const [newChatOpen, setNewChatOpen] = useState(false)
 
   useEffect(() => {
     // Fetch session data from server-side
@@ -37,7 +38,7 @@ const SessionProvider = ({ children }) => {
   }, []);
 
   return (
-    <SessionContext.Provider value={{ user, setUser, lastMessage, setLastMessage, lastMessageSent, setLastMessageSent }}>
+    <SessionContext.Provider value={{ user, setUser, lastMessage, setLastMessage, lastMessageSent, setLastMessageSent, newChatOpen, setNewChatOpen }}>
       {children}
     </SessionContext.Provider>
   );

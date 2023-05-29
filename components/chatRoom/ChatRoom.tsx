@@ -80,7 +80,6 @@ return (
                     </React.Fragment>
                   );
                 })}
-              <LogoutButton />
             </div>
                 </div>
           </div>

@@ -13,7 +13,7 @@ interface IResponse{
 }
 
 const ChatsPage = (props) => {
-  const [newChatOpen, setNewChatOpen] = useState(false)
+  const {setNewChatOpen, newChatOpen} = useContext(SessionContext)
   const [roomId, setRoomId] = useState(0);
     const sideBarRef = useRef(null);
 
@@ -31,8 +31,7 @@ const ChatsPage = (props) => {
       <div className="grid grid-cols-default w-full h-full">
         <div className="col-span-5 border-r border-gray-300">
           <Sidebar setRoomId={setRoomId} setNewChatOpen={setNewChatOpen}>
-          <button onClick={()=>{setNewChatOpen((prev)=>!prev)}}>test</button>
-            <NewChatOverlay setRoomId={setRoomId} setIsOpen={()=>{setNewChatOpen(false)}} isOpen={newChatOpen} />
+            <NewChatOverlay setRoomId={setRoomId}   />
           </Sidebar>
         </div>
           <ChatRoom roomId={roomId} data={props.data} />

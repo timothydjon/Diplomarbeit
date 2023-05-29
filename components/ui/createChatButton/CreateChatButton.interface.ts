@@ -1,4 +1,6 @@
 export default interface ICreateChatButton{
     label: string;
-    onClick: ()=>void;
+    onClick?: ()=>void;
+    disabled?: boolean;
+    className?: string;
 }

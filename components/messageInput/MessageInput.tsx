@@ -91,7 +91,7 @@ useOuterClick(el, (event) => {
                         <Clip />
                     </div>
                 </div>
-                <div className="bg-purple p-4 rounded-full flex items-center justify-center">
+                <div className="bg-purple ml-4 p-4 rounded-full flex items-center justify-center">
                     <button
                         onClick={() => { handleSendBtn("test") }}>
                         {msgText == "" && false ? <Microphone /> : <SendBtn />}

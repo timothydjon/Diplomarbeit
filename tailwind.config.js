@@ -47,6 +47,7 @@ module.exports = {
       brown: "#806C6C",
       white: "#ffffff",
       purple: "#9974E7",
+      red: "#E53935",
     },
   },
   plugins: [],
