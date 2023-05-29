@@ -5,43 +5,25 @@ import { Chats } from '../../chatRoom/ChatRoom.interface';
 const RoomTeaser = (props: IRoomTeaser) => {
   const { room, setRoomId, roomId } = props;
 
-function formatDate(inputDate) {
-  const date = new Date(inputDate);
-  const now = new Date();
-
-  // Checking if the date is today
-  if (isSameDay(date, now)) {
-    return date.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
-    });
+  function formatDate(inputDate) {
+    const date = new Date(inputDate);
+    const now = new Date();
+  
+    // Checking if the date is today
+    if (date.toDateString() === now.toDateString()) {
+        return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+    }
+  
+    // Checking if the date is from this week
+    const startOfWeek = now.getDate() - now.getDay(); 
+    const endOfWeek = startOfWeek + 6;
+    if (date.getDate() >= startOfWeek && date.getDate() <= endOfWeek) {
+        return date.toLocaleDateString('en-US', { weekday: 'short' });
+    }
+  
+    // If not today or this week
+    return date.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
   }
-
-  // Checking if the date is from this week
-  if (isSameWeek(date, now)) {
-    return date.toLocaleDateString('en-US', { weekday: 'short' });
-  }
-
-  // If not today or this week
-  return date.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
-}
-
-function isSameDay(date1, date2) {
-  return (
-    date1.getDate() === date2.getDate() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getFullYear() === date2.getFullYear()
-  );
-}
-
-function isSameWeek(date1, date2) {
-  const diff = Math.abs(date1 - date2);
-  const oneDay = 1000 * 60 * 60 * 24;
-  const daysDiff = Math.floor(diff / oneDay);
-  return daysDiff <= 6 && date1.getDay() >= date2.getDay();
-}
-
   
   const formattedDate = formatDate(room.last_message_sent);
 
