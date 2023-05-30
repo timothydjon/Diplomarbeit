@@ -67,7 +67,7 @@ return (
       <div className={`${styles.container} col-span-19 flex flex-col justify-between p-4 bg-gray-100`}>
         <div className="w-full">
           <div className=" mx-auto flex  flex-col justify-center">
-            <Toolbar />
+            <Toolbar currentRoomId={roomId}  />
             <div className='flex flex-col-reverse h-[80vh] overflow-auto'>
             <div className="w-full flex flex-col">
               {messages.length > 0 &&

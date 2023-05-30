@@ -7,7 +7,7 @@ export default interface IUserTeaser {
         id: number;
         username: string;
     }
-    onClick: () => void; 
+    onClick?: () => void; 
     isSelected?: boolean;
 
 }
