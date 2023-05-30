@@ -4,10 +4,17 @@ import { Chats } from '../../chatRoom/ChatRoom.interface';
 import { SessionContext } from '../../../context/sessionContext';
 import { getUserById } from '../../../utils/getUserById';
 
+const SERVER: string = process.env.REACT_APP_SOCKET_URL;
+
+
 const RoomTeaser = (props: IRoomTeaser) => {
-  const { room, setRoomId } = props;
+  const { room, setRoomId, currentRoomId } = props;
   const [roomName, setRoomName] = useState("")
   const { user } = useContext(SessionContext);
+
+
+
+
 // console.log("roomprops", props)
   function formatDate(inputDate) {
     const date = new Date(inputDate);
@@ -71,8 +78,9 @@ const RoomTeaser = (props: IRoomTeaser) => {
     }
   })
 
+
   return (
-    <button onClick={() => { setRoomId(room.id) }} className="w-full flex items-center justify-between px-4 hover:bg-gray-700 focus:outline-none mb-5">
+    <button onClick={() => { setRoomId(room.id) }} className={`w-full flex items-center justify-between transition-all hover:bg-grey-light/10 duration-200 ease-in-out  px-4 hover:bg-gray-700 focus:outline-none mb-2  rounded-lg py-2 ${room.id === currentRoomId && "bg-grey-light/20 hover:bg-grey-light/20"}`}>
       <div className="flex items-center">
         <div className="h-16 w-16 rounded-full overflow-hidden">
           <img placeholder="blur" src="/assets/github_profilepic.png" className="w-full h-full object-cover" />

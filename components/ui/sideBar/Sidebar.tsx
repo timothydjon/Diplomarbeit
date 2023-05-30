@@ -5,10 +5,13 @@ import ChatAccordion from '../chatAccordion/chatAccordion';
 import { useOuterClick } from 'react-outer-click';
 import LogoutButton from '../logoutButton/logoutButton';
 import Link from "next/link"
+import { SessionContext } from '../../../context/sessionContext';
 
 const Sidebar = (props: ISidebar) => {
-  const { children, setRoomId, setNewChatOpen } = props;
+  const { children, setRoomId, setNewChatOpen, currentRoomId } = props;
   const sidebarRef = useRef(null);
+  
+  const { user } = useContext(SessionContext);
 
   const handleOuterClick = () => {
     setNewChatOpen(false);
@@ -17,11 +20,22 @@ const Sidebar = (props: ISidebar) => {
   useOuterClick(sidebarRef, handleOuterClick);
 
   return (
-    <div className="col-span-5 bg-grey-dark px-3 h-full relative" ref={sidebarRef}>
-      <ChatAccordion setRoomId={setRoomId} setNewChatOpen={setNewChatOpen} />
+    <div className="col-span-5 bg-grey-dark px-3 h-full relative flex flex-col" ref={sidebarRef}>
+      <ChatAccordion currentRoomId={currentRoomId} setRoomId={setRoomId} setNewChatOpen={setNewChatOpen} />
       {children}
-      <Link href="/users/1">user with id 1</Link>
+      <div className=' w-full flex flex-col h-full pb-6'>
+        {
+          user?.id &&
+          <Link 
+          className='mt-auto text-center w-full py-3  border-gray-600 bg-grey-medium text-white hover:bg-grey-medium/70 rounded-lg shadow-md transition-all duration-200 ease-in-out font-semibold mb-2' 
+          href={`/users/${user?.id}`}>
+            Your Profile
+          </Link>
+}
+
+
               <LogoutButton />
+      </div>
     </div>
   );
 };

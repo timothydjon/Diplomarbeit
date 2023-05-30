@@ -1,0 +1,30 @@
+.userPreview {
+  position: relative;
+  transition: background-color 0.5s ease;
+}
+
+.userPreview:hover {
+  background-color: #9974E7;
+}
+
+.userPreview:hover .username, .userPreview:hover .userImage {
+  visibility: hidden;
+}
+
+.userPreview::after {
+  content: "Visit Profile";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  visibility: hidden;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1em;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;  /* Add this line */
+}
+
+.userPreview:hover::after {
+  visibility: visible;
+}

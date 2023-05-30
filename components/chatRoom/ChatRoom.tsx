@@ -7,6 +7,7 @@ import LogoutButton from '../ui/logoutButton/logoutButton';
 import MessageInput from '../messageInput/MessageInput';
 import styles from './ChatRoom.module.scss'
 import Sidebar from '../ui/sideBar/Sidebar';
+import Toolbar from '../ui/toolbar/Toolbar';
 
 
 const SERVER: string = process.env.REACT_APP_SOCKET_URL;
@@ -66,7 +67,7 @@ return (
       <div className={`${styles.container} col-span-19 flex flex-col justify-between p-4 bg-gray-100`}>
         <div className="w-full">
           <div className=" mx-auto flex  flex-col justify-center">
-            {!!user && <h1>Welcome, {user.username}!</h1>}
+            <Toolbar currentRoomId={roomId}  />
             <div className='flex flex-col-reverse h-[80vh] overflow-auto'>
             <div className="w-full flex flex-col">
               {messages.length > 0 &&

@@ -10,7 +10,7 @@ const Message = (props: IMessage) => {
     return (
         <div 
             {...rest} 
-            className={`flex flex-col justify-between ${isSender ? styles.sender : styles.recipient } mb-8 rounded-2xl pl-4 pt-2 pb-3 pr-8 max-w-[500px]`}
+            className={`flex flex-col justify-between ${isSender ? styles.sender : styles.recipient + " text-grey-light" } mb-8 rounded-2xl pl-4 pt-2 pb-3 pr-8 max-w-[500px]`}
         >
             <div className='flex justify-between items-start'>
                 <p className='text-base'>{message.username}</p>
