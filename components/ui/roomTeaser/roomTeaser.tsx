@@ -4,7 +4,7 @@ import { Chats } from '../../chatRoom/ChatRoom.interface';
 
 const RoomTeaser = (props: IRoomTeaser) => {
   const { room, setRoomId, roomId } = props;
-
+console.log("roomprops", props)
   function formatDate(inputDate) {
     const date = new Date(inputDate);
     const now = new Date();
