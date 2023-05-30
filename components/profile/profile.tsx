@@ -15,12 +15,12 @@ const Profile = (props) => {
   
     
 
-  socket.emit('connection', ()=>{
-    console.log("Connected to backend");
-  })
+  // socket.emit('connection', ()=>{
+  //   console.log("Connected to backend");
+  // })
 
   const handleClick = (content: string)=>{
-    console.log("testing");
+    // console.log("testing");
     socket.emit('test', {sender: user.username ,content: content})
   }
 

@@ -17,9 +17,9 @@ const ChatsPage = (props) => {
   const [roomId, setRoomId] = useState(0);
     const sideBarRef = useRef(null);
 
-  useEffect(()=>{
-    console.log("idchanged:", roomId)
-  }, [roomId])
+  // useEffect(()=>{
+  //   console.log("idchanged:", roomId)
+  // }, [roomId])
 
  useOuterClick(sideBarRef, (event) => {
     if (sideBarRef.current && newChatOpen) {

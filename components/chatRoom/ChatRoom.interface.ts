@@ -26,4 +26,6 @@ export interface Chats {
     created_on: string
     last_message: string
     last_message_sent: string
+    chat_admin_id: number
+    isRoom: boolean;
 }

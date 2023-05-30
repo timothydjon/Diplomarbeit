@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import IRoomTeaser from './roomTeaser.interface';
 import { Chats } from '../../chatRoom/ChatRoom.interface';
+import { SessionContext } from '../../../context/sessionContext';
+import { getUserById } from '../../../utils/getUserById';
 
 const RoomTeaser = (props: IRoomTeaser) => {
-  const { room, setRoomId, roomId } = props;
-console.log("roomprops", props)
+  const { room, setRoomId } = props;
+  const [roomName, setRoomName] = useState("")
+  const { user } = useContext(SessionContext);
+// console.log("roomprops", props)
   function formatDate(inputDate) {
     const date = new Date(inputDate);
     const now = new Date();
@@ -51,14 +55,30 @@ console.log("roomprops", props)
 
   const formattedDate = formatDate(room.last_message_sent);
 
+  useEffect(()=>{
+    if(user?.id === room.chat_admin_id || room.isRoom || !room.chat_admin_id){
+      setRoomName(room.name)
+    } else {
+      const fetchChats = async () => {
+      const result = await getUserById(room.chat_admin_id); 
+      setRoomName(result.username)
+        // console.log("RESRES",result)
+    };
+
+    if (user) {
+      fetchChats();
+    }
+    }
+  })
+
   return (
-    <button onClick={() => { setRoomId(roomId) }} className="w-full flex items-center justify-between px-4 hover:bg-gray-700 focus:outline-none mb-5">
+    <button onClick={() => { setRoomId(room.id) }} className="w-full flex items-center justify-between px-4 hover:bg-gray-700 focus:outline-none mb-5">
       <div className="flex items-center">
         <div className="h-16 w-16 rounded-full overflow-hidden">
           <img placeholder="blur" src="/assets/github_profilepic.png" className="w-full h-full object-cover" />
         </div>
         <div className="ml-4 flex flex-col justify-between items-start h-full">
-          <span className="text-white text-2xl font-semibold">{room.name}</span>
+          <span className="text-white text-2xl font-semibold">{roomName}</span>
           <span className="text-grey-light text-xl ml-1 mt-1">{room.last_message}</span>
         </div>
       </div>
