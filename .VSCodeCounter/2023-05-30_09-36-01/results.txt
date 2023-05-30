@@ -1,0 +1,171 @@
+Date : 2023-05-30 09:36:01
+Directory : /home/timy/school/diplomarbeit/client/chat-client
+Total : 96 files,  2127 codes, 152 comments, 467 blanks, all 2746 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| TypeScript JSX     |         35 |      1,084 |        103 |        239 |      1,426 |
+| SCSS               |         16 |        499 |         24 |        133 |        656 |
+| TypeScript         |         22 |        191 |         12 |         52 |        255 |
+| XML                |         17 |        176 |          8 |         14 |        198 |
+| JavaScript         |          3 |         84 |          5 |          7 |         96 |
+| JSON               |          1 |         34 |          0 |          1 |         35 |
+| JSON with Comments |          1 |         30 |          0 |          1 |         31 |
+| Markdown           |          1 |         29 |          0 |         20 |         49 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                        | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                           |         96 |      2,127 |        152 |        467 |      2,746 |
+| . (Files)                                                                                                                   |          6 |        177 |          5 |         29 |        211 |
+| assets                                                                                                                      |         20 |        231 |          8 |         20 |        259 |
+| assets (Files)                                                                                                              |          5 |         59 |          0 |          7 |         66 |
+| assets/src                                                                                                                  |         15 |        172 |          8 |         13 |        193 |
+| assets/src (Files)                                                                                                          |          7 |         37 |          0 |          5 |         42 |
+| assets/src/VIKTIG                                                                                                           |          8 |        135 |          8 |          8 |        151 |
+| assets/src/VIKTIG (Files)                                                                                                   |          2 |         45 |          2 |          2 |         49 |
+| assets/src/VIKTIG/icons                                                                                                     |          6 |         90 |          6 |          6 |        102 |
+| components                                                                                                                  |         48 |        949 |         46 |        209 |      1,204 |
+| components (Files)                                                                                                          |          4 |         63 |          0 |         20 |         83 |
+| components/chatRoom                                                                                                         |          3 |        111 |          1 |         21 |        133 |
+| components/chatsPage                                                                                                        |          3 |         37 |          3 |          7 |         47 |
+| components/login                                                                                                            |          3 |         97 |          2 |         13 |        112 |
+| components/messageInput                                                                                                     |          3 |         92 |          6 |         15 |        113 |
+| components/profile                                                                                                          |          2 |         35 |          6 |         21 |         62 |
+| components/ui                                                                                                               |         30 |        514 |         28 |        112 |        654 |
+| components/ui/chatAccordion                                                                                                 |          3 |        121 |          5 |         20 |        146 |
+| components/ui/createChatButton                                                                                              |          3 |         20 |          0 |          6 |         26 |
+| components/ui/filterInput                                                                                                   |          3 |         21 |          1 |          8 |         30 |
+| components/ui/logoutButton                                                                                                  |          3 |         48 |          4 |         11 |         63 |
+| components/ui/message                                                                                                       |          3 |         33 |          0 |          5 |         38 |
+| components/ui/newChatOverlay                                                                                                |          3 |        126 |         11 |         21 |        158 |
+| components/ui/newRoomOverlay                                                                                                |          3 |         13 |          1 |          8 |         22 |
+| components/ui/roomTeaser                                                                                                    |          3 |         77 |          6 |         15 |         98 |
+| components/ui/sideBar                                                                                                       |          3 |         28 |          0 |         10 |         38 |
+| components/ui/userTeaser                                                                                                    |          3 |         27 |          0 |          8 |         35 |
+| context                                                                                                                     |          2 |         42 |          1 |         10 |         53 |
+| context (Files)                                                                                                             |          1 |         38 |          1 |          9 |         48 |
+| context/socket                                                                                                              |          1 |          4 |          0 |          1 |          5 |
+| interfaces                                                                                                                  |          1 |          4 |          5 |          2 |         11 |
+| pages                                                                                                                       |         11 |        203 |         58 |         62 |        323 |
+| pages (Files)                                                                                                               |          3 |         41 |          2 |         11 |         54 |
+| pages/api                                                                                                                   |          2 |         23 |          0 |          8 |         31 |
+| pages/api (Files)                                                                                                           |          1 |         10 |          0 |          4 |         14 |
+| pages/api/users                                                                                                             |          1 |         13 |          0 |          4 |         17 |
+| pages/chats                                                                                                                 |          1 |         20 |          1 |          6 |         27 |
+| pages/login                                                                                                                 |          1 |         15 |         19 |          8 |         42 |
+| pages/profile                                                                                                               |          1 |         16 |          1 |          7 |         24 |
+| pages/test                                                                                                                  |          1 |         17 |         24 |          7 |         48 |
+| pages/users                                                                                                                 |          2 |         71 |         11 |         15 |         97 |
+| public                                                                                                                      |          2 |          4 |          0 |          1 |          5 |
+| public/assets                                                                                                               |          2 |          4 |          0 |          1 |          5 |
+| styles                                                                                                                      |          2 |        449 |         22 |        115 |        586 |
+| utils                                                                                                                       |          4 |         68 |          7 |         19 |         94 |
++-----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                                    | language           | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /home/timy/school/diplomarbeit/client/chat-client/README.md                                                                 | Markdown           |         29 |          0 |         20 |         49 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/Clip.tsx                                                           | TypeScript JSX     |          9 |          0 |          1 |         10 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/EmojiSmile.tsx                                                     | TypeScript JSX     |         18 |          0 |          1 |         19 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/Microphone.tsx                                                     | TypeScript JSX     |          9 |          0 |          3 |         12 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/Send.tsx                                                           | TypeScript JSX     |         15 |          0 |          1 |         16 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/ThreeDots.tsx                                                      | TypeScript JSX     |          8 |          0 |          1 |          9 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/VIKTIG/icons/1564519_bell_new_note_no_XnotificationsX_icon.svg | XML                |         18 |          1 |          1 |         20 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/VIKTIG/icons/1564519_bell_new_note_notifications_icon.svg      | XML                |         17 |          1 |          1 |         19 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/VIKTIG/icons/622400_pen_pencil_edit_write_writing_icon.svg     | XML                |         17 |          1 |          1 |         19 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/VIKTIG/icons/8666693_search_icon.svg                           | XML                |          9 |          1 |          1 |         11 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/VIKTIG/icons/8666714_bell_icon.svg                             | XML                |          9 |          1 |          1 |         11 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/VIKTIG/icons/9035563_person_outline_icon.svg                   | XML                |         20 |          1 |          1 |         22 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/VIKTIG/praesentation-viktig-logo-ohne-txt.svg                  | XML                |         17 |          1 |          1 |         19 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/VIKTIG/praesentation-viktig-logo.svg                           | XML                |         28 |          1 |          1 |         30 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/back.svg                                                       | XML                |          2 |          0 |          0 |          2 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/clip.svg                                                       | XML                |          4 |          0 |          1 |          5 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/emojiSmile.svg                                                 | XML                |         13 |          0 |          1 |         14 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/microphone.svg                                                 | XML                |          4 |          0 |          1 |          5 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/send.svg                                                       | XML                |         10 |          0 |          1 |         11 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/subtle-prism.svg                                               | XML                |          1 |          0 |          0 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/assets/src/three-dots.svg                                                 | XML                |          3 |          0 |          1 |          4 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/Layout.tsx                                                     | TypeScript JSX     |         20 |          0 |          6 |         26 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/List.tsx                                                       | TypeScript JSX     |         16 |          0 |          4 |         20 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ListDetail.tsx                                                 | TypeScript JSX     |         12 |          0 |          5 |         17 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ListItem.tsx                                                   | TypeScript JSX     |         15 |          0 |          5 |         20 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/chatRoom/ChatRoom.interface.ts                                 | TypeScript         |         29 |          0 |          2 |         31 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/chatRoom/ChatRoom.module.scss                                  | SCSS               |          3 |          0 |          0 |          3 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/chatRoom/ChatRoom.tsx                                          | TypeScript JSX     |         79 |          1 |         19 |         99 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/chatsPage/chatsPage.interface.ts                               | TypeScript         |          3 |          0 |          0 |          3 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/chatsPage/chatsPage.module.scss                                | SCSS               |          0 |          0 |          1 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/chatsPage/chatsPage.tsx                                        | TypeScript JSX     |         34 |          3 |          6 |         43 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/login/Login.interface.ts                                       | TypeScript         |          2 |          0 |          2 |          4 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/login/Login.module.scss                                        | SCSS               |          0 |          0 |          1 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/login/Login.tsx                                                | TypeScript JSX     |         95 |          2 |         10 |        107 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/messageInput/MessageInput.interface.ts                         | TypeScript         |          4 |          0 |          1 |          5 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/messageInput/MessageInput.module.scss                          | SCSS               |          0 |          0 |          1 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/messageInput/MessageInput.tsx                                  | TypeScript JSX     |         88 |          6 |         13 |        107 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/profile/profile.interface.ts                                   | TypeScript         |          7 |          0 |          2 |          9 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/profile/profile.tsx                                            | TypeScript JSX     |         28 |          6 |         19 |         53 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/chatAccordion/chatAccordion.interface.ts                    | TypeScript         |          6 |          0 |          1 |          7 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/chatAccordion/chatAccordion.module.scss                     | SCSS               |         41 |          2 |          6 |         49 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/chatAccordion/chatAccordion.tsx                             | TypeScript JSX     |         74 |          3 |         13 |         90 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/createChatButton/CreateChatButton.interface.ts              | TypeScript         |          6 |          0 |          0 |          6 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/createChatButton/CreateChatButton.scss                      | SCSS               |          0 |          0 |          2 |          2 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/createChatButton/CreateChatButton.tsx                       | TypeScript JSX     |         14 |          0 |          4 |         18 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/filterInput/FilterInput.interface.ts                        | TypeScript         |          4 |          0 |          2 |          6 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/filterInput/FilterInput.module.scss                         | SCSS               |          0 |          0 |          1 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/filterInput/FilterInput.tsx                                 | TypeScript JSX     |         17 |          1 |          5 |         23 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/logoutButton/logoutButton.interface.ts                      | TypeScript         |          3 |          0 |          0 |          3 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/logoutButton/logoutButton.module.scss                       | SCSS               |          0 |          0 |          1 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/logoutButton/logoutButton.tsx                               | TypeScript JSX     |         45 |          4 |         10 |         59 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/message/Message.interface.ts                                | TypeScript         |          6 |          0 |          1 |          7 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/message/Message.module.scss                                 | SCSS               |          6 |          0 |          0 |          6 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/message/Message.tsx                                         | TypeScript JSX     |         21 |          0 |          4 |         25 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/newChatOverlay/NewChatOverlay.interface.ts                  | TypeScript         |          3 |          0 |          2 |          5 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/newChatOverlay/NewChatOverlay.module.scss                   | SCSS               |          0 |          0 |          1 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/newChatOverlay/NewChatOverlay.tsx                           | TypeScript JSX     |        123 |         11 |         18 |        152 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/newRoomOverlay/NewRoomOverlay.interface.ts                  | TypeScript         |          2 |          0 |          3 |          5 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/newRoomOverlay/NewRoomOverlay.module.scss                   | SCSS               |          0 |          0 |          1 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/newRoomOverlay/NewRoomOverlay.tsx                           | TypeScript JSX     |         11 |          1 |          4 |         16 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/roomTeaser/roomTeaser.interface.ts                          | TypeScript         |          5 |          0 |          1 |          6 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/roomTeaser/roomTeaser.module.scss                           | SCSS               |          0 |          0 |          1 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/roomTeaser/roomTeaser.tsx                                   | TypeScript JSX     |         72 |          6 |         13 |         91 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/sideBar/Sidebar.interface.ts                                | TypeScript         |          6 |          0 |          3 |          9 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/sideBar/Sidebar.module.scss                                 | SCSS               |          0 |          0 |          1 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/sideBar/Sidebar.tsx                                         | TypeScript JSX     |         22 |          0 |          6 |         28 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/userTeaser/userTeaser.interface.ts                          | TypeScript         |         10 |          0 |          3 |         13 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/userTeaser/userTeaser.module.scss                           | SCSS               |          0 |          0 |          1 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/components/ui/userTeaser/userTeaser.tsx                                   | TypeScript JSX     |         17 |          0 |          4 |         21 |
+| /home/timy/school/diplomarbeit/client/chat-client/context/sessionContext.tsx                                                | TypeScript JSX     |         38 |          1 |          9 |         48 |
+| /home/timy/school/diplomarbeit/client/chat-client/context/socket/SocketContext.tsx                                          | TypeScript JSX     |          4 |          0 |          1 |          5 |
+| /home/timy/school/diplomarbeit/client/chat-client/interfaces/index.ts                                                       | TypeScript         |          4 |          5 |          2 |         11 |
+| /home/timy/school/diplomarbeit/client/chat-client/next.config.js                                                            | JavaScript         |         26 |          4 |          4 |         34 |
+| /home/timy/school/diplomarbeit/client/chat-client/package.json                                                              | JSON               |         34 |          0 |          1 |         35 |
+| /home/timy/school/diplomarbeit/client/chat-client/pages/_app.tsx                                                            | TypeScript JSX     |         13 |          2 |          3 |         18 |
+| /home/timy/school/diplomarbeit/client/chat-client/pages/about.tsx                                                           | TypeScript JSX     |         11 |          0 |          3 |         14 |
+| /home/timy/school/diplomarbeit/client/chat-client/pages/api/session.ts                                                      | TypeScript         |         10 |          0 |          4 |         14 |
+| /home/timy/school/diplomarbeit/client/chat-client/pages/api/users/index.ts                                                  | TypeScript         |         13 |          0 |          4 |         17 |
+| /home/timy/school/diplomarbeit/client/chat-client/pages/chats/index.tsx                                                     | TypeScript JSX     |         20 |          1 |          6 |         27 |
+| /home/timy/school/diplomarbeit/client/chat-client/pages/index.tsx                                                           | TypeScript JSX     |         17 |          0 |          5 |         22 |
+| /home/timy/school/diplomarbeit/client/chat-client/pages/login/index.tsx                                                     | TypeScript JSX     |         15 |         19 |          8 |         42 |
+| /home/timy/school/diplomarbeit/client/chat-client/pages/profile/index.tsx                                                   | TypeScript JSX     |         16 |          1 |          7 |         24 |
+| /home/timy/school/diplomarbeit/client/chat-client/pages/test/index.tsx                                                      | TypeScript JSX     |         17 |         24 |          7 |         48 |
+| /home/timy/school/diplomarbeit/client/chat-client/pages/users/[id].tsx                                                      | TypeScript JSX     |         45 |          8 |          9 |         62 |
+| /home/timy/school/diplomarbeit/client/chat-client/pages/users/index.tsx                                                     | TypeScript JSX     |         26 |          3 |          6 |         35 |
+| /home/timy/school/diplomarbeit/client/chat-client/postcss.config.js                                                         | JavaScript         |          6 |          0 |          1 |          7 |
+| /home/timy/school/diplomarbeit/client/chat-client/public/assets/plus-icon.svg                                               | XML                |          3 |          0 |          1 |          4 |
+| /home/timy/school/diplomarbeit/client/chat-client/public/assets/subtle-prism.svg                                            | XML                |          1 |          0 |          0 |          1 |
+| /home/timy/school/diplomarbeit/client/chat-client/styles/globals.scss                                                       | SCSS               |        224 |         11 |         59 |        294 |
+| /home/timy/school/diplomarbeit/client/chat-client/styles/unreset.scss                                                       | SCSS               |        225 |         11 |         56 |        292 |
+| /home/timy/school/diplomarbeit/client/chat-client/tailwind.config.js                                                        | JavaScript         |         52 |          1 |          2 |         55 |
+| /home/timy/school/diplomarbeit/client/chat-client/tsconfig.json                                                             | JSON with Comments |         30 |          0 |          1 |         31 |
+| /home/timy/school/diplomarbeit/client/chat-client/utils/getChatsByUserId.ts                                                 | TypeScript         |         26 |          0 |          5 |         31 |
+| /home/timy/school/diplomarbeit/client/chat-client/utils/getUserById.ts                                                      | TypeScript         |         25 |          0 |          5 |         30 |
+| /home/timy/school/diplomarbeit/client/chat-client/utils/requireAuth.ts                                                      | TypeScript         |         10 |          6 |          7 |         23 |
+| /home/timy/school/diplomarbeit/client/chat-client/utils/sample-data.ts                                                      | TypeScript         |          7 |          1 |          2 |         10 |
+| Total                                                                                                                       |                    |      2,127 |        152 |        467 |      2,746 |
++-----------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

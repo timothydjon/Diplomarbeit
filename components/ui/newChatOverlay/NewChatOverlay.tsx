@@ -50,7 +50,7 @@ const NewChatOverlay = (props: INewChat) => {
   }
 
   useEffect(()=>{
-    console.log("allUser",allUser)
+    // console.log("allUser",allUser)
   },[allUser])
 
   // useEffect(() => {
@@ -80,7 +80,7 @@ setNewChatOpen(false)
       });
       // console.log("sanity check")
       const data = await response.json();
-      console.log("DATA", data)
+      // console.log("DATA", data)
     } catch (error) {
       console.error(error);
       setLoading(false);
