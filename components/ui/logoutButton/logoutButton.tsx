@@ -50,7 +50,7 @@ const LogoutButton = (props: ILogoutButton) => {
     }
 }
   return (
-        <button className={`${props?.className ? props.className : ""} bg-red hover:bg-red/60 px-8 py-3 rounded-lg font-semibold `} onClick={handleLogout} >
+        <button className={`${props?.className ? props.className : ""} bg-red hover:bg-red/60 px-8 py-3 rounded-lg transition-all duration-200 ease-in-out  font-semibold `} onClick={handleLogout} >
             Logout
         </button>
   );
