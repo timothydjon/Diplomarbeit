@@ -6,6 +6,7 @@ import IToolbar from './Toolbar.interface';
 import { SessionContext } from '../../../context/sessionContext';
 import { User } from '../newChatOverlay/NewChatOverlay';
 import UserTeaser from '../userTeaser/userTeaser';
+import UserPreview from '../userPreview/userPreview';
 
 const Toolbar = (props: IToolbar) => {
   const { currentRoomId ,...rest } = props;
@@ -48,7 +49,7 @@ const getChatUser = async () => {
   return (
     <div className='h-20 flex'>{!!chatUser.length && chatUser.map((user: User)=>{
       return(
-        <span key={user.id}><UserTeaser user={user}/></span>
+        <span className='mr-2' key={user.id}><UserPreview user={user}/></span>
       )
     })}</div>
   );
