@@ -39,7 +39,7 @@ const Profile = (props) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ oldPassword, newPassword: newPassword1, user }),
+        body: JSON.stringify({ oldPassword, newPassword: newPassword1, email: user.email }),
       });
   
       if (response.ok) {
