@@ -1,6 +1,5 @@
 import React from 'react';
 import IRoomTeaser from './userPreview.interface';
-import { Chats } from '../../chatRoom/ChatRoom.interface';
 import Link from "next/link"
 import styles from "./userPreview.module.scss"
 

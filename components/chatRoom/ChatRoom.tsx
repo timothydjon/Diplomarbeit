@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import IChatRoom, { Chats, Imessage } from './ChatRoom.interface'
-import { socket, SocketContext } from '../../context/socket/SocketContext'
+import { socket } from '../../context/socket/SocketContext'
 import Message from '../ui/message/Message'
 import { SessionContext } from '../../context/sessionContext';
 import LogoutButton from '../ui/logoutButton/logoutButton';

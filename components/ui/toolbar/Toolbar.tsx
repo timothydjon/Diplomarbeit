@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import IChatAccordion from './Toolbar.interface'
-import styles from "./CreateChatButton.module.scss"
-import cn from "classnames"
+import { Swiper, SwiperSlide } from 'swiper/react';
 import IToolbar from './Toolbar.interface';
 import { SessionContext } from '../../../context/sessionContext';
 import { User } from '../newChatOverlay/NewChatOverlay';
-import UserTeaser from '../userTeaser/userTeaser';
 import UserPreview from '../userPreview/userPreview';
+// import styles from "./Toolbar.scss" 
+import classNames from 'classnames';
 
 const Toolbar = (props: IToolbar) => {
   const { currentRoomId ,...rest } = props;
@@ -47,11 +46,21 @@ const getChatUser = async () => {
 
 
   return (
-    <div className='h-20 flex'>{!!chatUser.length && chatUser.map((user: User)=>{
-      return(
-        <span className='mr-2' key={user.id}><UserPreview user={user}/></span>
-      )
-    })}</div>
+    <div className='h-20 flex'>
+      <Swiper
+       spaceBetween={5}
+       direction='horizontal'
+      slidesPerView={"auto"}
+      onSlideChange={() => console.log('slide change')}
+      onSwiper={(swiper) => console.log(swiper)}
+      className={classNames(' max-w-[55%] flex overflow-hidden')}>
+      {!!chatUser.length && chatUser.map((user: User)=>{
+        return(
+          <SwiperSlide className='w-min ' key={user.id + user.username}><UserPreview user={user}/></SwiperSlide>
+          )
+        })}
+        </Swiper>
+    </div>
   );
 };
 

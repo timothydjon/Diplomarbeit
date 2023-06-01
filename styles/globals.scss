@@ -12,6 +12,9 @@
  * Eric Meyer's Reset CSS, YUI 3 Reset CSS, HTML5 Reset Stylesheet of HTML5
  * Doctor, or Tim Murtaugh's HTML5 Reset.
  */
+ .swiper-wrapper{
+	display: flex;
+ }
 
 html {
 	box-sizing: content-box;
