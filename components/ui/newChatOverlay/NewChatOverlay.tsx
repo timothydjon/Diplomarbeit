@@ -58,34 +58,36 @@ const NewChatOverlay = (props: INewChat) => {
   // }, [roomId])
 
 
-  const confirmCreateChat = async () =>{
+const confirmCreateChat = async () => {
+    setNewChatOpen(false);
+  try {
+    const response = await fetch(`${process.env.REACT_APP_SOCKET_URL}/createChat`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        chatName: roomName ? roomName : selectedUser[0].username,
+        selectedUser: selectedUser,
+        creatorId: user.id
+      }),
+      credentials: 'include',
+    });
+    // console.log("res",response)
 
-// console.log("working")
-setNewChatOpen(false)
-    setLoading(true);
-    
-    try {
-      const response = await fetch(`${process.env.REACT_APP_SOCKET_URL}/createChat`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        mode: "cors",
-        body: JSON.stringify({
-          chatName: roomName ? roomName : selectedUser[0].username,
-          selectedUser: selectedUser,
-          creatorId: user.id
-        }),
-        credentials: 'include',
-      });
-      // console.log("sanity check")
-      const data = await response.json();
-      // console.log("DATA", data)
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
+
+    // console.log("Response received: ", response); // Add this line
+    const data = await response.json();
+    // console.log('Server response:', data); // log the server response for debugging
+    // setNewChatOpen(false);
+
+  } catch (error) {
+    console.error('Error during fetch:', error); // log any errors during fetch
+    setLoading(false);
   }
+}
+
 
 
 
@@ -123,7 +125,17 @@ setNewChatOpen(false)
           selectedUser.length > 1 && 
           <input type='text'  onChange={handleRoomNameChange} placeholder='Room Name'  className='bg-grey-light focus:outline-none rounded-xl overflow-hidden text-30 h-10  mt-5 p-3 font-semibold text-2xl' />
         }
-               <CreateChatButton onClick={confirmCreateChat} className="mt-6" disabled={!selectedUser.length || (selectedUser.length > 1 && !roomName)} label="Confirm"  />
+               <CreateChatButton  onClick={() => {
+    console.log('Calling confirmCreateChat');
+    confirmCreateChat()
+      .then(() => {
+        console.log('confirmCreateChat resolved');
+        setNewChatOpen(false);
+      })
+      .catch((error) => {
+        console.error('confirmCreateChat rejected', error);
+      });
+  }} className="mt-6" disabled={!selectedUser.length || (selectedUser.length > 1 && !roomName)} label="Confirm"  />
              <div className='mt-6'>
       {
         !!selectedUser.length && selectedUser.map((user: User)=>{

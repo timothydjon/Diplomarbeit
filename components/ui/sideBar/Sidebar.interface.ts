@@ -6,5 +6,6 @@ export default interface ISidebar {
     setRoomId: (arg0: number) => void
     setNewChatOpen: Dispatch<SetStateAction<boolean>>
     currentRoomId: number;
+    newChatOpen: boolean;
     
 }

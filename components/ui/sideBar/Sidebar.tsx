@@ -8,7 +8,7 @@ import Link from "next/link"
 import { SessionContext } from '../../../context/sessionContext';
 
 const Sidebar = (props: ISidebar) => {
-  const { children, setRoomId, setNewChatOpen, currentRoomId } = props;
+  const { children, setRoomId, setNewChatOpen, currentRoomId, newChatOpen } = props;
   const sidebarRef = useRef(null);
   
   const { user } = useContext(SessionContext);
@@ -21,7 +21,7 @@ const Sidebar = (props: ISidebar) => {
 
   return (
     <div className="col-span-5 bg-grey-dark px-3 h-full relative flex flex-col" ref={sidebarRef}>
-      <ChatAccordion currentRoomId={currentRoomId} setRoomId={setRoomId} setNewChatOpen={setNewChatOpen} />
+      <ChatAccordion newChatOpen={newChatOpen} currentRoomId={currentRoomId} setRoomId={setRoomId} setNewChatOpen={setNewChatOpen} />
       {children}
       <div className=' w-full flex flex-col h-full pb-6'>
         {

@@ -27,7 +27,7 @@ const ChatsPage = (props) => {
     <div className="w-full h-screen overflow-hidden">
       <div className="grid grid-cols-default w-full h-full">
         <div className="col-span-5 border-r border-gray-300">
-          <Sidebar currentRoomId={roomId} setRoomId={setRoomId} setNewChatOpen={setNewChatOpen}>
+          <Sidebar currentRoomId={roomId} setRoomId={setRoomId} newChatOpen={newChatOpen} setNewChatOpen={setNewChatOpen}>
             <NewChatOverlay setRoomId={setRoomId}   />
           </Sidebar>
         </div>

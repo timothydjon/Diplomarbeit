@@ -10,7 +10,7 @@ import { SessionContext } from '../../../context/sessionContext';
 import { Chats } from '../../chatRoom/ChatRoom.interface';
 
 const ChatAccordion = (props: IChatAccordion) => {
-  const {setRoomId, setNewChatOpen, currentRoomId} = props
+  const {setRoomId, setNewChatOpen, currentRoomId, newChatOpen} = props
   const [openIndex, setOpenIndex] = useState(1);
   const { user } = useContext(SessionContext);
   const [rooms, setRooms] = useState<Chats[]>([]);
@@ -35,7 +35,30 @@ const ChatAccordion = (props: IChatAccordion) => {
     if (user) {
       fetchChats();
     }
-  }, [user]);
+  }, [user ]);
+
+
+useEffect(() => {
+  const fetchChats = async () => {
+    const result = await getChatsByUserId(user.id); // user.id
+    if (Array.isArray(result)) {
+      setRooms(result);
+      setChats(rooms)
+    } else {
+      // No Chats for given User found
+      console.error(result);
+    }
+  };
+
+  if (user) {
+    const timerId = setTimeout(() => {
+      fetchChats();
+    }, 1000); // delay in milliseconds
+
+    // Clear the timer when the component unmounts or when user or newChatOpen changes
+    return () => clearTimeout(timerId);
+  }
+}, [user, newChatOpen]);
 
   return (
     <div className='flex flex-col'>
