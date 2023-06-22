@@ -26,27 +26,9 @@ const MessageInput = (props: IMessageInput) => {
     const [msgType, setMsgType] = useState<number>(0);
     const [openEmoji, setOpenEmoji] = useState(false);
     const fileInputRef = useRef(null); // Create a reference for the file input
-    const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
+    const [imagePreviewUrl, setImagePreviewUrl] = useState<string[]>([]);
     const el = useRef(null);
 
-    const handleSendBtn = async () => {
-        let newMessage;
-        if (imagePreviewUrl) {
-            // Sending an image message as Base64 through WebSocket
-            newMessage = { msg: imagePreviewUrl, msg_type: 1, user_id: user_id, chat_id: chat_id, username: user.username };
-        } else if (msgText.trim() !== "") {
-            // Sending a text message
-            newMessage = { msg: msgText, msg_type: 0, user_id: user_id, chat_id: chat_id, username: user.username };
-        } else {
-            return;
-        }
-        socket.emit('send_message', newMessage);
-        setMsgText("");
-        setImagePreviewUrl(null);
-        setMsgType(0);
-    };
-    
-    
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         // handle Enter from keyboard
         if (e.key === 'Enter') {
@@ -55,7 +37,6 @@ const MessageInput = (props: IMessageInput) => {
         }
     };
     
-    
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setMsgText(e.target.value);
     };
@@ -63,36 +44,68 @@ const MessageInput = (props: IMessageInput) => {
     const handleEmojiClick = (emojiData, event) => {
         setMsgText(prevMsgText => prevMsgText + emojiData.emoji);
     }
-
+    
     const dropzoneRef = createRef();
-
+    
     const handleClipClick = (event) => {
         if(fileInputRef.current)
         fileInputRef.current.click();
     };
-
+    
     useOuterClick(el, (event) => {
         if (event.target !== document.querySelector('.message-input')) {
             setOpenEmoji(false);
         }
     });
-
-    const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
+    
+    const onDrop = useCallback((acceptedFiles) => {
         if (acceptedFiles.length > 0) {
-            console.log(acceptedFiles[0].name);
-
-            // Create image preview URL
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreviewUrl(reader.result);
-            };
-            reader.readAsDataURL(acceptedFiles[0]);
-        } else {
-            // Handle rejected files here
-            console.log('Rejected files:', rejectedFiles);
+            acceptedFiles.forEach(file => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const imageUrl = reader.result as string;
+                    setImagePreviewUrl(prevImagePreviewUrl => [...prevImagePreviewUrl, imageUrl]);
+                };
+                reader.readAsDataURL(file);
+            });
         }
     }, []);
 
+
+    const handleSendBtn = async () => {
+        try {
+            if (imagePreviewUrl.length > 0) {
+                imagePreviewUrl.forEach(url => {
+                    const imageMessage = {
+                        msg: url,
+                        msg_type: 1,
+                        user_id: user_id,
+                        chat_id: chat_id,
+                        username: user.username
+                    };
+                    socket.emit('send_message', imageMessage);
+                });
+                setImagePreviewUrl([]);
+            }
+    
+            // handlingtext message
+            if (msgText !== "") {
+                const textMessage = {
+                    msg: msgText,
+                    msg_type: 0,
+                    user_id: user_id,
+                    chat_id: chat_id,
+                    username: user.username
+                };
+                socket.emit('send_message', textMessage);
+                setMsgText("");
+            }
+    
+        } catch (err) {
+            console.error("Error sending messages:", err);
+        }
+    };
+    
     const { getRootProps, getInputProps } = useDropzone({
         onDrop,
         noClick: false,
@@ -105,9 +118,10 @@ const MessageInput = (props: IMessageInput) => {
     });
 
     useEffect(() => {
-        setImagePreviewUrl(null);
+        setImagePreviewUrl([]);
         setMsgText("");
     }, [chat_id])
+    
     
     return (
         <div className='w-full' {...rest}>
@@ -132,7 +146,10 @@ const MessageInput = (props: IMessageInput) => {
                             onKeyDown={handleKeyDown}
                             rows={1}
                         />
-                        {imagePreviewUrl && <img src={imagePreviewUrl} alt="preview" style={{ maxHeight: '50px', maxWidth: '100px' }} />}
+                        {imagePreviewUrl && imagePreviewUrl.map((url, index) => (
+                            <img key={index} src={url} alt="preview" style={{ maxHeight: '50px', maxWidth: '100px' }} /> 
+                         ))}
+
                     </div>
                     <div className="py-1 px-5" {...getRootProps()}>
                         <input {...getInputProps()} />
