@@ -11,11 +11,34 @@ const RoomTeaser = (props: IRoomTeaser) => {
   const { room, setRoomId, currentRoomId } = props;
   const [roomName, setRoomName] = useState("")
   const { user } = useContext(SessionContext);
+  
+  function isSameDay(date1, date2) {
+    return (
+      date1.getDate() === date2.getDate() &&
+      date1.getMonth() === date2.getMonth() &&
+      date1.getFullYear() === date2.getFullYear()
+    );
+  }
+  
+  // console.log("roomprops", props)
 
+  function isSameWeek(date1, date2) {
+    // Clone the dates to avoid modifying them
+    const d1 = new Date(date1);
+    const d2 = new Date(date2);
+  
+    // Set them to the start of the week (Monday)
+    d1.setDate(d1.getDate() - d1.getDay() + 1); // 1 represents Monday
+    d2.setDate(d2.getDate() - d2.getDay() + 1);
+  
+    // Set hours, minutes, seconds and milliseconds to 0 to only compare dates
+    d1.setHours(0, 0, 0, 0);
+    d2.setHours(0, 0, 0, 0);
+  
+    // Check if they are the same
+    return d1.getTime() === d2.getTime();
+  }
 
-
-
-// console.log("roomprops", props)
   function formatDate(inputDate) {
     const date = new Date(inputDate);
     const now = new Date();
@@ -45,20 +68,6 @@ const RoomTeaser = (props: IRoomTeaser) => {
     return date.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
   }
 
-  function isSameDay(date1, date2) {
-    return (
-      date1.getDate() === date2.getDate() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getFullYear() === date2.getFullYear()
-    );
-  }
-
-  function isSameWeek(date1, date2) {
-    const diff = Math.abs(date1 - date2);
-    const oneDay = 1000 * 60 * 60 * 24;
-    const daysDiff = Math.floor(diff / oneDay);
-    return daysDiff <= 6 && date1.getDay() >= date2.getDay();
-  }
 
   const formattedDate = formatDate(room.last_message_sent);
 

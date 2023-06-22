@@ -29,14 +29,24 @@ const MessageInput = (props: IMessageInput) => {
     const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
     const el = useRef(null);
 
-    const handleSendBtn = (content: string) => {
-        if (msgText == "") { return; }
-        //if img: /upload and set msg_type 1
-        const newMessage = { msg: msgText, msg_type: msgType, user_id: user_id, chat_id: chat_id, username: user.username };
+    const handleSendBtn = async (content: string) => {
+        let newMessage;
+        if (imagePreviewUrl) {
+            // Sending an image message as Base64 through WebSocket
+            newMessage = { msg: imagePreviewUrl, msg_type: 1, user_id: user_id, chat_id: chat_id, username: user.username };
+        } else if (msgText.trim() !== "") {
+            // Sending a text message
+            newMessage = { msg: msgText, msg_type: 0, user_id: user_id, chat_id: chat_id, username: user.username };
+        } else {
+            return;
+        }
         socket.emit('send_message', newMessage);
         setMsgText("");
-    }
-
+        setImagePreviewUrl(null);
+        setMsgType(0);
+    };
+    
+    
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         // handle Enter from keyboard
         if (e.key === 'Enter') {
@@ -44,6 +54,7 @@ const MessageInput = (props: IMessageInput) => {
             handleSendBtn("test");
         }
     };
+    
     
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setMsgText(e.target.value);
@@ -102,10 +113,10 @@ const MessageInput = (props: IMessageInput) => {
         <div className='w-full' {...rest}>
             <div className="flex w-full items-center p-2 relative" {...rootPros()}>
             {
-                            openEmoji && <div ref={el} className='absolute top-[-450px] left-0'>
-                                <Picker onEmojiClick={handleEmojiClick}  />
-                                </div>
-                        }
+                openEmoji && <div ref={el} className='absolute top-[-450px] left-0'>
+                    <Picker onEmojiClick={handleEmojiClick}  />
+                    </div>
+            }
                 <div className="overflow-hidden w-full bg-brown rounded-lg flex items-center p-1">
                     <div className="py-1 px-3">
                         <button onClick={() => { setOpenEmoji(true) }}>
@@ -121,7 +132,7 @@ const MessageInput = (props: IMessageInput) => {
                             onKeyDown={handleKeyDown}
                             rows={1}
                         />
-                        {imagePreviewUrl && <img src={imagePreviewUrl} alt="preview" style={{ maxHeight: '100px', maxWidth: '100px' }} />}
+                        {imagePreviewUrl && <img src={imagePreviewUrl} alt="preview" style={{ maxHeight: '50px', maxWidth: '100px' }} />}
                     </div>
                     <div className="py-1 px-5" {...getRootProps()}>
                         <input {...getInputProps()} />
