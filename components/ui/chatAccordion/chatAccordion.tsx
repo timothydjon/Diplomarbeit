@@ -58,7 +58,6 @@ const ChatAccordion = (props: IChatAccordion) => {
             </React.Fragment>
           )})}
      </div>
-
       <div className='border-b-2 w-full my-4 border-grey-soft ' />
 
       <button onClick={() => { setOpenIndex(openIndex === 1 ? -1 : 1) }} className='flex items-center '>

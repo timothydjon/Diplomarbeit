@@ -81,11 +81,19 @@ const RoomTeaser = (props: IRoomTeaser) => {
         // console.log("RESRES",result)
     };
 
-    if (user) {
-      fetchChats();
-    }
+      if (user) {
+        fetchChats();
+      }
     }
   })
+
+  let displayMessage = room.last_message;
+  if (room.last_message === null) {
+    displayMessage = '';
+  }
+  else if (room.last_message.startsWith('data:image')) {
+    displayMessage = 'Picture';
+  }
 
 
   return (
@@ -96,7 +104,7 @@ const RoomTeaser = (props: IRoomTeaser) => {
         </div>
         <div className="ml-4 flex flex-col justify-between items-start h-full">
           <span className="text-white text-2xl font-semibold">{roomName}</span>
-          <span className="text-grey-light text-xl ml-1 mt-1">{room.last_message}</span>
+          <span className="text-grey-light text-xl ml-1 mt-1">{displayMessage}</span>
         </div>
       </div>
       <span className="text-grey-light text-sm mt-1">{formattedDate}</span>

@@ -29,7 +29,7 @@ const MessageInput = (props: IMessageInput) => {
     const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
     const el = useRef(null);
 
-    const handleSendBtn = async (content: string) => {
+    const handleSendBtn = async () => {
         let newMessage;
         if (imagePreviewUrl) {
             // Sending an image message as Base64 through WebSocket
@@ -51,7 +51,7 @@ const MessageInput = (props: IMessageInput) => {
         // handle Enter from keyboard
         if (e.key === 'Enter') {
             e.preventDefault();
-            handleSendBtn("test");
+            handleSendBtn();
         }
     };
     
@@ -142,7 +142,7 @@ const MessageInput = (props: IMessageInput) => {
                     </div>
                 </div>
                 <div className="bg-purple ml-4 p-4 rounded-full flex items-center justify-center">
-                    <button onClick={() => { handleSendBtn("test") }}>
+                    <button onClick={() => { handleSendBtn() }}>
                         {msgText === "" && false ? <Microphone /> : <SendBtn />}
                     </button>
                 </div>
