@@ -12,33 +12,60 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
   const [showAnimation, setShowAnimation] = useState(false);
   const emailInputRef = useRef(null);
+  const [error, setError] = useState(null);
+  const [invalidAttempt, setInvalidAttempt] = useState(false);
 
-  const handleLogin = async () => {
-    setLoading(true);
+const handleLogin = async () => {
+  setLoading(true);
 
-    try {
-      const response = await fetch(`${process.env.REACT_APP_SOCKET_URL}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        mode: "cors",
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-        credentials: 'include',
-      });
+  try {
+    const response = await fetch(`${process.env.REACT_APP_SOCKET_URL}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      credentials: 'include',
+    });
+
+    console.log("Response Status:", response.status); // log the status code
+    console.log("Response Headers:", response.headers.get("content-type")); // log content-type header
+
+    if (response.headers.get("content-type").includes("application/json")) {
       const data = await response.json();
-      setLoading(false);
-      setUser(data.user);
-      setShowAnimation(true);
 
-    } catch (error) {
-      console.error(error);
+      if (response.ok) { // If status code is 2xx
+        setError(null);
+        setLoading(false);
+        setUser(data.user);
+        setShowAnimation(true);
+        
+      } else {
+        setError(data.message);
+        setLoading(false);
+        setInvalidAttempt(true);
+      }
+    } else {
+      console.error("Response is not JSON");
+      setError("An unexpected error occurred.");
       setLoading(false);
     }
-  };
+
+  } catch (error) {
+    console.error(error);
+    setLoading(false);
+    setError("An error occurred. Please try again.");
+  }
+};
+
+  
+  
+  
+
 
   useEffect(() => {
     if (showAnimation) {
@@ -74,7 +101,7 @@ const Login = (props) => {
               id="email"
               type="text"
               placeholder="Enter your email"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => { setEmail(e.target.value); setInvalidAttempt(false); }}
               ref={emailInputRef}
               onKeyDown={(event) => { if (event.key === 'Enter') { handleLogin(); } }}
             />
@@ -88,19 +115,21 @@ const Login = (props) => {
               id="password"
               type="password"
               placeholder="Enter your password"
-              onChange={(e) => { setPassword(e.target.value); }}
+              onChange={(e) => { setPassword(e.target.value); setInvalidAttempt(false); }}
               onKeyDown={(event) => { if (event.key === 'Enter') { handleLogin(); } }}
             />
           </div>
+
           <button
-            className={`text-2xl font-bold text-gray-800 mb-6 text-center`}
-            onClick={handleLogin}
-            disabled={loading}
-          >
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
-        </div>
-      )}</div>
+          className={`text-2xl font-bold text-gray-800 mb-6 text-center`}
+          onClick={handleLogin}
+          disabled={loading}
+        >
+          {loading ? '...' : (invalidAttempt ? 'Invalid Credentials' : 'Login')}
+        </button>
+          </div>
+        )}
+      </div>
   );
 }
 
