@@ -11,6 +11,7 @@ const SERVER: string = process.env.REACT_APP_SOCKET_URL;
 interface Props {
   data: any;
 }
+// TODO: wrap contextproviderr over this 
 
 const ProfilePage: React.FC<Props> = ({ data }) => {
   return (

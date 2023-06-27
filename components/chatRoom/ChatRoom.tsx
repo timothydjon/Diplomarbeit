@@ -1,34 +1,24 @@
 import React, { useEffect, useState, useContext } from 'react'
-import IChatRoom, { Imessage } from './ChatRoom.interface'
-import { socket, SocketContext } from '../../context/socket/SocketContext'
+import IChatRoom, { Chats, Imessage } from './ChatRoom.interface'
+import { socket } from '../../context/socket/SocketContext'
 import Message from '../ui/message/Message'
 import { SessionContext } from '../../context/sessionContext';
 import LogoutButton from '../ui/logoutButton/logoutButton';
 import MessageInput from '../messageInput/MessageInput';
 import styles from './ChatRoom.module.scss'
 import Sidebar from '../ui/sideBar/Sidebar';
+import Toolbar from '../ui/toolbar/Toolbar';
 
 
-const SERVER : string = process.env.REACT_APP_SOCKET_URL;
+const SERVER: string = process.env.REACT_APP_SOCKET_URL;
 
 const ChatRoom = (props: IChatRoom) => {
-  const [messages, setMessages] = useState<Imessage[]>([])
-  const [userName, setUserName ] = useState <string>("timy");
-  const [msgText, setMsgText ] = useState <string>("justadummy");
+  const {roomId} = props
   const { user } = useContext(SessionContext);
-  // const { data: session } = useSession();
-  
-  socket.emit('connection', ()=>{
-    console.log("Connected to backend");
-  })
+  const [messages, setMessages] = useState<Imessage[]>([]);
 
-  const handleClick = (content: string)=>{
-    console.log("testing");
-    //socket.emit('test', {sender: user.username ,content: content})
-  }
-
-const getMessagesByChatId = (/* chatId: number*/)=>{
-  fetch(`${SERVER}/getMessagesByChatId/${1}`, {
+  const getMessagesByChatId = (roomId: number) => {
+    fetch(`${SERVER}/getMessagesByChatId/${roomId}`, {
       headers: {
         Accept: "application/json",
         "Accept-Language": "en-US,en;q=0.5",
@@ -47,56 +37,57 @@ const getMessagesByChatId = (/* chatId: number*/)=>{
       .catch((error) => {
         console.error("There was an error fetching profileList!");
       });
+  }
+
+  useEffect(() => {
+    socket.emit('join_room', roomId);
+    getMessagesByChatId(roomId);
+    
+    const newMessageHandler = (newMessage) => {
+      if (newMessage.chat_id === roomId) {
+        setMessages((messages) => [...messages, newMessage]);
+      }
+    };
+    
+    
+    socket.on("new_message", newMessageHandler);
+  
+    return () => {
+      socket.off("new_message", newMessageHandler);
+    };
+  }, [roomId]);
+  
+
+
+const addMessage = (newMessage: Imessage) => {
+  setMessages(prevMessages => [...prevMessages, newMessage]);
 }
-
-socket.on("reload", (arg)=>{
-  getMessagesByChatId();
-
-})
-
-const handleChange = (e: React.FormEvent<HTMLInputElement>)=>{
-    setUserName(user.username)
-}
-const handleMsgChange = (e: React.FormEvent<HTMLInputElement>)=>{
-    setMsgText(e.currentTarget.value)
-}
-
-
-useEffect(() => {
-  getMessagesByChatId();
-}, [])
-
-useEffect(()=>{
-  //console.log("Messages:",messages);
-}, [])
-
-
 
 return (
       <div className={`${styles.container} col-span-19 flex flex-col justify-between p-4 bg-gray-100`}>
         <div className="w-full">
           <div className=" mx-auto flex  flex-col justify-center">
-            {!!user && <h1>Welcome, {user.username}!</h1>}
+            <Toolbar currentRoomId={roomId}  />
             <div className='flex flex-col-reverse h-[80vh] overflow-auto'>
             <div className="w-full flex flex-col">
               {messages.length > 0 &&
                 messages.map((msg, index) => {
-                  // TODO: key prop needs fix
+                  // TODO: key prop needs fix use created_on in key
                   return (
                     <React.Fragment key={index}>
                       {!!user && (
                         <Message isSender={msg.user_id === user.id} message={msg} />
-                        )}
+                      )}
                     </React.Fragment>
                   );
                 })}
-              <LogoutButton />
             </div>
                 </div>
           </div>
-        </div>
-        <div className="w-full border-t border-gray-300 p-4">
-          {user?.id && <MessageInput chat_id={1} user_id={user.id} />}
+
+          <div className="w-full border-t border-gray-300 p-4">
+          {user?.id && <MessageInput chat_id={roomId} user_id={user.id} />}
+          </div>
         </div>
       </div>
 

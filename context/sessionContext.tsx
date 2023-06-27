@@ -1,4 +1,3 @@
-// sessionContext.js
 import React, { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
@@ -7,7 +6,11 @@ export const SessionContext = createContext(null);
 
 const SessionProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [lastMessage, setLastMessage] = useState("");
+  const [lastMessageSent, setLastMessageSent] = useState("");
+  
   const router = useRouter();
+  const [newChatOpen, setNewChatOpen] = useState(false)
 
   useEffect(() => {
     // Fetch session data from server-side
@@ -15,15 +18,19 @@ const SessionProvider = ({ children }) => {
       try {
         const res = await fetch(`${SERVER}/getSession`, {
           method: "POST",
-          credentials: "include"
+          credentials: "include",
+          mode: "cors"
         });
 
         const data = await res.json();
-        console.log("Session user: ", data.user)
         setUser(data.user);
+        if (!data.user) {
+          router.push('/login');
+        }
       } catch (error) {
         console.error(error);
         setUser(null);
+        router.push('/login');
       }
     };
 
@@ -31,7 +38,7 @@ const SessionProvider = ({ children }) => {
   }, []);
 
   return (
-    <SessionContext.Provider value={{ user, setUser }}>
+    <SessionContext.Provider value={{ user, setUser, lastMessage, setLastMessage, lastMessageSent, setLastMessageSent, newChatOpen, setNewChatOpen }}>
       {children}
     </SessionContext.Provider>
   );

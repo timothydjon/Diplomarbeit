@@ -1,0 +1,21 @@
+"filename", "language", "JSON", "TypeScript JSX", "SCSS", "TypeScript", "comment", "blank", "total"
+"/home/timy/school/diplomarbeit/client/chat-client/components/chatRoom/ChatRoom.tsx", "TypeScript JSX", 0, 1, 0, 0, 0, 0, 1
+"/home/timy/school/diplomarbeit/client/chat-client/components/chatsPage/chatsPage.tsx", "TypeScript JSX", 0, -3, 0, 0, 0, 0, -3
+"/home/timy/school/diplomarbeit/client/chat-client/components/profile/profile.interface.ts", "TypeScript", 0, 0, 0, 1, 0, 0, 1
+"/home/timy/school/diplomarbeit/client/chat-client/components/profile/profile.tsx", "TypeScript JSX", 0, -3, 0, 0, 4, 0, 1
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/chatAccordion/chatAccordion.interface.ts", "TypeScript", 0, 0, 0, 1, 0, 0, 1
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/chatAccordion/chatAccordion.tsx", "TypeScript JSX", 0, -1, 0, 0, 2, 1, 2
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/roomTeaser/roomTeaser.interface.ts", "TypeScript", 0, 0, 0, 1, 0, 0, 1
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/roomTeaser/roomTeaser.tsx", "TypeScript JSX", 0, 1, 0, 0, 0, 7, 8
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/sideBar/Sidebar.interface.ts", "TypeScript", 0, 0, 0, 1, 0, 0, 1
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/sideBar/Sidebar.tsx", "TypeScript JSX", 0, 13, 0, 0, 0, 3, 16
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/toolbar/Toolbar.interface.ts", "TypeScript", 0, 0, 0, 3, 0, 0, 3
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/toolbar/Toolbar.scss", "SCSS", 0, 0, 0, 0, 0, 2, 2
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/toolbar/Toolbar.tsx", "TypeScript JSX", 0, 46, 0, 0, 1, 11, 58
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/userPreview/userPreview.interface.ts", "TypeScript", 0, 0, 0, 8, 0, 3, 11
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/userPreview/userPreview.module.scss", "SCSS", 0, 0, 26, 0, 0, 5, 31
+"/home/timy/school/diplomarbeit/client/chat-client/components/ui/userPreview/userPreview.tsx", "TypeScript JSX", 0, 19, 0, 0, 0, 4, 23
+"/home/timy/school/diplomarbeit/client/chat-client/package.json", "JSON", 3, 0, 0, 0, 0, 0, 3
+"/home/timy/school/diplomarbeit/client/chat-client/pages/_app.tsx", "TypeScript JSX", 0, -1, 0, 0, 0, 0, -1
+"/home/timy/school/diplomarbeit/client/chat-client/pages/users/[id].tsx", "TypeScript JSX", 0, -32, 0, 0, -6, -3, -41
+"Total", "-", 3, 40, 26, 15, 1, 33, 118

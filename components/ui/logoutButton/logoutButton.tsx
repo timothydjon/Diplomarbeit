@@ -29,10 +29,10 @@ const LogoutButton = (props: ILogoutButton) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: 1,
-          username: name,
-          password: 'password',
-          email: 'test@gmail.com',
+          id: null,
+          username: null,
+          password: null,
+          email: null,
         }),
         credentials: 'include',
       });
@@ -43,14 +43,14 @@ const LogoutButton = (props: ILogoutButton) => {
       // Update session state with user data
       setUser(null);
 
-      // Redirect to the dashboard page after successful login
+      // Redirect to the dashboard page after successful logout
       router.push('/login');
     } catch (error) {
       console.error(error);
     }
 }
   return (
-        <button className={`${props?.className ? props.className : ""} bg-red`} onClick={handleLogout} >
+        <button className={`${props?.className ? props.className : ""} bg-red hover:bg-red/60 px-8 py-3 rounded-lg transition-all duration-200 ease-in-out  font-semibold `} onClick={handleLogout} >
             Logout
         </button>
   );

@@ -41,7 +41,8 @@
   }
 }
 .openSubNav{
-@apply max-h-96 pt-5;
+  @apply max-h-[50vh] overflow-auto pt-5;
+  
 }
 .closedSubNav{
 @apply max-h-0;

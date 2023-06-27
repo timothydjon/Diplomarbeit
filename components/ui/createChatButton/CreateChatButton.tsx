@@ -5,11 +5,11 @@ import cn from "classnames"
 import ICreateChatButton from './CreateChatButton.interface';
 
 const CreateChatButton = (props: ICreateChatButton) => {
-  const { onClick, label, ...rest } = props;
+  const { className, disabled ,onClick, label, ...rest } = props;
 
 
   return (
-<button {...rest} className='rounded-2xl py-2 overflow-hidden bg-grey-soft text-white' onClick={onClick}>
+<button {...rest} disabled={disabled} className={` disabled:bg-grey-soft/20 flex-shrink-0 hover:bg-grey-medium/70 transition-all duration-200 ease-in-out  disabled:text-grey-soft rounded-lg py-3 overflow-hidden bg-grey-soft text-white mb-5 ${className}`} onClick={onClick}>
     {label}
 </button>
   );
