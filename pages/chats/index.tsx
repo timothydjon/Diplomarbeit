@@ -1,8 +1,5 @@
 import React from 'react';
-import Login from '../../components/login/Login';
-import Layout from '../../components/Layout';
 import { socket, SocketContext } from '../../context/socket/SocketContext';
-import { GetServerSideProps } from 'next';
 import ChatsPage from '../../components/chatsPage/chatsPage';
 import { useRequireAuth } from '../../utils/requireAuth';
 

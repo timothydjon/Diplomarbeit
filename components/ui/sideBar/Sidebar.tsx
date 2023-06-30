@@ -1,5 +1,4 @@
-import { useContext, useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/router';
+import { useContext, useRef } from 'react';
 import ISidebar from './Sidebar.interface';
 import ChatAccordion from '../chatAccordion/chatAccordion';
 import { useOuterClick } from 'react-outer-click';
@@ -31,10 +30,8 @@ const Sidebar = (props: ISidebar) => {
           href={`/users/${user?.id}`}>
             Your Profile
           </Link>
-}
-
-
-              <LogoutButton />
+        }
+      <LogoutButton />
       </div>
     </div>
   );
