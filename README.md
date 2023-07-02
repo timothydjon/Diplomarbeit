@@ -1,48 +1,40 @@
-# TypeScript Next.js example
+# Project: Viktig
 
+This README document provides instructions for setting up your local development environment for the Viktig Frontend project.
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+## Prerequisites
 
-## Deploy your own
+Before getting started, ensure you have:
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript)
+- Cloned the repository
+- Set up nvm (Node Version Manager)
+- Installed Yarn globally
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+## Setup
 
-## How to use it?
+### 1. Install dependencies
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-typescript with-typescript-app
-```
-
-```bash
-yarn create next-app --example with-typescript with-typescript-app
-```
+Install the necessary dependencies using `yarn`:
 
 ```bash
-pnpm create next-app --example with-typescript with-typescript-app
+nvm use && yarn
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+2. Create .env file
 
-## Notes
+Create a .env file at the root of the project with the following content:
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
-
-```
-npm install --save-dev typescript
+```bash
+REACT_APP_SOCKET_URL=http://localhost:8080
 ```
 
-To enable TypeScript's features, we install the type declarations for React and Node.
+3. Run the application
 
+Start your local development server using yarn dev:
+
+```bash
+yarn dev
 ```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
 
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
+After following these steps, the da_frontend application should be up and running in your local development environment.
 
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
-
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
