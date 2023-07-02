@@ -38,3 +38,4 @@ yarn dev
 
 After following these steps, the da_frontend application should be up and running in your local development environment.
 
+This project is licensed under the MIT License. See the LICENSE file for details.
