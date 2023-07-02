@@ -1,11 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { SessionContext } from '../../context/sessionContext';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { FiEye, FiEyeOff, FiX, FiUpload } from 'react-icons/fi';
+import { useRouter } from 'next/router';
+import cn from "classnames"
+import styles from './profile.module.scss';
+import Pencil from '../../assets/Pencil'
 
 const SERVER: string = process.env.REACT_APP_SOCKET_URL;
 
 const Profile = (props) => {
   const { id } = props;
+  const router = useRouter();
   const { user } = useContext(SessionContext);
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword1, setNewPassword1] = useState('');
@@ -14,6 +19,69 @@ const Profile = (props) => {
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword1, setShowNewPassword1] = useState(false);
   const [showNewPassword2, setShowNewPassword2] = useState(false);
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
+  const [userId, setUserId] = useState(null);
+
+  const handleFileChange = async (e) => {
+    setProfilePicture(e.target.files[0]);
+    setImagePreviewUrl(URL.createObjectURL(e.target.files[0]));
+    handleUploadProfilePicture(e.target.files[0]);
+  };
+
+  const handleUploadProfilePicture = async (file) => {
+    const reader = new FileReader();
+    reader.onloadend = async () => {
+      const base64data = reader.result;
+      const data = {
+        userId: user.id,
+        newPicture: base64data
+      };
+      try {
+        const response = await fetch(`${SERVER}/changeProfilePicture`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        if (response.ok) {
+          setMessage('Profile picture updated successfully!');
+        } else {
+          setMessage("Uploaded picture is too big!")
+        }
+      } catch (error) {
+        console.error(error);
+        setMessage('Server error');
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleRemoveProfilePicture = async () => {
+    try {
+      const response = await fetch(`${SERVER}/changeProfilePicture`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          newPicture: null
+        }),
+      });
+  
+      if (response.ok) {
+        setMessage('Profile picture removed successfully!');
+      } else {
+        const errorMessage = await response.text();
+        setMessage(errorMessage);
+      }
+    } catch (error) {
+      console.error(error);
+      setMessage('Server error');
+    }
+  };
 
   const handleChangePassword = async () => {
     if (newPassword1 !== newPassword2) {
@@ -59,7 +127,6 @@ const Profile = (props) => {
       setMessage('Server error');
     }
   };
-  
 
   const handleOldPasswordChange = (e) => {
     setOldPassword(e.target.value);
@@ -76,20 +143,87 @@ const Profile = (props) => {
     setMessage('');
   };
 
+  
+  useEffect(() => {
+    setUserId(router.query.id);
+  }, [router.query.id]);
+
+  useEffect(() => {
+    const fetchProfilePicture = async () => {
+      try {
+        if (userId) {
+          const response = await fetch(`${SERVER}/getProfilePicture?userId=${userId}`);
+          if (response.ok) {
+            const responseData = await response.json();
+            setImagePreviewUrl(responseData.image);
+          } else {
+            console.error('Failed to fetch profile picture');
+          }
+        }
+      } catch (error) {
+        console.error('An error occurred while fetching the profile picture:', error);
+      }
+    };
+
+    fetchProfilePicture();
+  }, [userId, imagePreviewUrl]);
+
 
   return (
+    <div className={cn(styles.container, "w-full h-full min-h-screen")}>
     <div className="max-w-md mx-auto p-4 bg-gray-100 rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">General</h1>
 
-      <div className="mb-4">
-        <h2 className="text-xl font-bold">Display Name</h2>
-        {!!user && <h3>{user.username}</h3>}
+      <div className="relative mb-4">
+        <div className="w-40 h-40 rounded-full mx-auto overflow-hidden relative">
+          {imagePreviewUrl && (
+            <img
+              src={imagePreviewUrl[0].profile_picture}
+              className="object-cover w-full h-full"
+            />
+          )}
+          
+          {!!user && imagePreviewUrl && user.id == id && (
+            <button
+              onClick={handleRemoveProfilePicture}
+              className="absolute top-3 right-4 flex items-center justify-center w-8 h-8 rounded-full text-black bg-white"
+            >
+              <FiX />
+            </button>
+          )}
+
+{!!user && imagePreviewUrl && user.id == id && (
+            <div className="absolute bottom-2 right-2">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            style={{ display: 'none' }}
+            id="fileInput"
+          />
+          <label
+            htmlFor="fileInput"
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-blue-500 cursor-pointer"
+            style={{ width: '25px', height: '25px' }}
+          >
+            <Pencil/>
+              </label>
+            </div>
+          )}
+        </div>
       </div>
 
-      <div className="mb-4">
+      {!!user && user.id == id && <div className="mb-4">
+      <h2 className="text-xl font-bold">
+        You are logged In As{' '}
+        <span className="text-white">{user.username}</span>
+      </h2>
+    </div>}
+
+    {!!user && <div className="mb-4">
         <h2 className="text-xl font-bold">E-Mail</h2>
-        {!!user && <span>{user.email}</span>}
+       <span>{user.email}</span>
       </div>
+      }
 
       {!!user && user.id == id && <div className="mb-4">
         <h2 className="text-xl font-bold">Change Password</h2>
@@ -108,7 +242,7 @@ const Profile = (props) => {
       </button>
     </div>
     <div className="mb-2">
-      <label htmlFor="newPassword" className="mr-2">New Password: (at least 6 characters)</label>
+      <label htmlFor="newPassword" className="mr-2">New Password: (at least 8 characters)</label>
       <input
         type={showNewPassword1 ? "text" : "password"}
         id="newPassword"
@@ -144,8 +278,11 @@ const Profile = (props) => {
         </button>
         )}
         {message && <p className="text-red-500 mt-2">{message}</p>}
-      </div>}
+      </div>
+      }
     </div>
+</div>
+
   );
 };
 
