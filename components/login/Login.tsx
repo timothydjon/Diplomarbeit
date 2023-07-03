@@ -12,7 +12,6 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
   const [showAnimation, setShowAnimation] = useState(false);
   const emailInputRef = useRef(null);
-  const [error, setError] = useState(null);
   const [invalidAttempt, setInvalidAttempt] = useState(false);
 
 const handleLogin = async () => {
@@ -39,33 +38,24 @@ const handleLogin = async () => {
       const data = await response.json();
 
       if (response.ok) { // If status code is 2xx
-        setError(null);
         setLoading(false);
         setUser(data.user);
         setShowAnimation(true);
         
       } else {
-        setError(data.message);
         setLoading(false);
         setInvalidAttempt(true);
       }
     } else {
       console.error("Response is not JSON");
-      setError("An unexpected error occurred.");
       setLoading(false);
     }
 
   } catch (error) {
     console.error(error);
     setLoading(false);
-    setError("An error occurred. Please try again.");
   }
 };
-
-  
-  
-  
-
 
   useEffect(() => {
     if (showAnimation) {
@@ -87,7 +77,7 @@ const handleLogin = async () => {
   return (
     <div className="bg-grey-medium h-screen flex items-center justify-center">
       {showAnimation ? (
-        <Image src={AnimatedLogo} alt="Loading Animation" width={150} height={150}/> 
+        <Image src={AnimatedLogo} alt="Loading Animation" width={250} height={250}/> 
       ) : (
         <div className="bg-grey-light shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
           <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Welcome to <span className="">VIKTIG</span></h1>

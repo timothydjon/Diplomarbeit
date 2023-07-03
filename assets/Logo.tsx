@@ -1,7 +1,7 @@
 import React from "react";
 
 const SvgComponent = () => (
-    <svg width="130" height="130" version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    <svg width="160" height="160" version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 513.6 556.1" style={{ enableBackground: "new 0 0 513.6 556.1" }} xmlSpace="preserve">
         <style type="text/css">
             {`.st0{fill:#A9E8D2;}`}
