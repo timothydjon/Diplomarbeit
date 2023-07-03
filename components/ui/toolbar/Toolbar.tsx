@@ -13,7 +13,6 @@ const Toolbar = (props: IToolbar) => {
     const [chatUser, setChatUser] = useState<User[]>([])
 
 const getChatUser = async () => {
-  console.log("working");
 
   try {
     const response = await fetch(`${process.env.REACT_APP_SOCKET_URL}/getUserByChatId`, {
@@ -31,7 +30,6 @@ const getChatUser = async () => {
     
     const data = await response.json();
     setChatUser(data)
-    // console.log("DATA", data);
   } catch (error) {
     console.error(error);
   }
@@ -40,9 +38,6 @@ const getChatUser = async () => {
   useEffect(()=>{
     getChatUser()
   },[currentRoomId])
-
-
-
 
 
   return (

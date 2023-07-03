@@ -97,14 +97,15 @@ const RoomTeaser = (props: IRoomTeaser) => {
 
 
   return (
-    <button onClick={() => { setRoomId(room.id) }} className={`w-full flex items-center justify-between transition-all hover:bg-grey-light/10 duration-200 ease-in-out  px-4 hover:bg-gray-700 focus:outline-none mb-2  rounded-lg py-2 ${room.id === currentRoomId && "bg-grey-light/20 hover:bg-grey-light/20"}`}>
+    <button onClick={() => { setRoomId(room.id) }} className={`w-full flex items-center justify-between overflow-hidden transition-all hover:bg-grey-light/10 duration-200 ease-in-out  px-4 hover:bg-gray-700 focus:outline-none mb-2  rounded-lg py-2 ${room.id === currentRoomId && "bg-grey-light/20 hover:bg-grey-light/20"}`}>
       <div className="flex items-center">
         <div className="h-16 w-16 rounded-full overflow-hidden">
           <img placeholder="blur" src="/assets/github_profilepic.png" className="w-full h-full object-cover" />
         </div>
         <div className="ml-4 flex flex-col justify-between items-start h-full">
           <span className="text-white text-2xl font-semibold">{roomName}</span>
-          <span className="text-grey-light text-xl ml-1 mt-1">{displayMessage}</span>
+          <span className="text-grey-light text-xl ml-1 mt-1 truncate overflow-hidden">{displayMessage}</span>
+
         </div>
       </div>
       <span className="text-grey-light text-sm mt-1">{formattedDate}</span>

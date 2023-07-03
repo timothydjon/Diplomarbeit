@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { SessionContext } from '../../context/sessionContext';
-import { FiEye, FiEyeOff, FiX, FiUpload } from 'react-icons/fi';
+import { FiEye, FiEyeOff, FiX } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 import cn from "classnames"
 import styles from './profile.module.scss';
 import Pencil from '../../assets/Pencil'
+import Logo from '../../assets/Logo'
 
 const SERVER: string = process.env.REACT_APP_SOCKET_URL;
 
@@ -22,6 +23,10 @@ const Profile = (props) => {
   const [profilePicture, setProfilePicture] = useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
   const [userId, setUserId] = useState(null);
+
+  const handleBackButton = () => {
+    router.push('/chats')
+  }
 
   const handleFileChange = async (e) => {
     setProfilePicture(e.target.files[0]);
@@ -171,8 +176,13 @@ const Profile = (props) => {
 
   return (
     <div className={cn(styles.container, "w-full h-full min-h-screen")}>
+              <button
+      onClick={handleBackButton}
+      className={`ml-10 mt-10`}
+        > 
+        <Logo />
+    </button>
     <div className="max-w-md mx-auto p-4 bg-gray-100 rounded shadow">
-
       <div className="relative mb-4">
         <div className="w-40 h-40 rounded-full mx-auto overflow-hidden relative">
           {imagePreviewUrl && (
@@ -191,23 +201,23 @@ const Profile = (props) => {
             </button>
           )}
 
-{!!user && imagePreviewUrl && user.id == id && (
-            <div className="absolute bottom-2 right-2">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            style={{ display: 'none' }}
-            id="fileInput"
-          />
-          <label
-            htmlFor="fileInput"
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-blue-500 cursor-pointer"
-            style={{ width: '25px', height: '25px' }}
-          >
-            <Pencil/>
-              </label>
-            </div>
+        {!!user && imagePreviewUrl && user.id == id && (
+          <div className="absolute bottom-2 right-2">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              style={{ display: 'none' }}
+              id="fileInput"
+            />
+            <label
+              htmlFor="fileInput"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-blue-500 cursor-pointer"
+              style={{ width: '25px', height: '25px' }}
+            >
+              <Pencil/>
+            </label>
+          </div>
           )}
         </div>
       </div>
@@ -215,7 +225,8 @@ const Profile = (props) => {
       {!!user && user.id == id && <div className="mb-4">
       <h2 className="text-xl font-bold">
         You are logged In As{' '}
-        <span className="text-white">{user.username}</span>
+        <span className="text-purple mt-2 font-black">{user.username}</span>
+
       </h2>
     </div>}
 
@@ -277,9 +288,10 @@ const Profile = (props) => {
           Save
         </button>
         )}
-        {message && <p className="text-red-500 mt-2">{message}</p>}
+        {message && <p className="text-purple mt-2 font-black">{message}</p>}
       </div>
       }
+    
     </div>
 </div>
 

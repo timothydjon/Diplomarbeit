@@ -30,7 +30,7 @@ const Message = (props: IMessage) => {
                     />
 
                     {showModal && (
-                        <div className="fixed z-10 inset-0 overflow-y-auto" onClick={() => setShowModal(false)}>
+                        <div className="fixed z-10 inset-0 " onClick={() => setShowModal(false)}>
                             <div className="flex items-center justify-center min-h-screen">
                                 <div className="fixed inset-0 transition-opacity" aria-hidden="true">
                                     <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -47,7 +47,7 @@ const Message = (props: IMessage) => {
                 </div>
             ) : (
                 // Display text message
-                <h3 className='break-word text-lg my-2'>{message.msg}</h3>
+                <h3 className='break-all text-lg my-2'>{message.msg}</h3>
             )}
         </div>
     );
