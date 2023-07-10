@@ -223,23 +223,23 @@ const Profile = (props) => {
       </div>
 
       {!!user && user.id == id && <div className="mb-4">
-      <h2 className="text-xl font-bold">
+      <h2 className="text-xl font-bold text-white">
         You are logged In As{' '}
-        <span className="text-purple mt-2 font-black">{user.username}</span>
+        <span className="text-nicepurple mt-2 font-black">{user.username}</span>
 
       </h2>
     </div>}
 
     {!!user && <div className="mb-4">
-        <h2 className="text-xl font-bold">E-Mail</h2>
-       <span>{user.email}</span>
+        <h2 className="text-xl font-bold text-white">E-Mail</h2>
+       <span className="text-white">{user.email}</span>
       </div>
       }
 
       {!!user && user.id == id && <div className="mb-4">
-        <h2 className="text-xl font-bold">Change Password</h2>
+        <h2 className="text-xl font-bold text-white">Change Password</h2>
         <div className="mb-2">
-      <label htmlFor="oldPassword" className="mr-2">Old Password:</label>
+      <label htmlFor="oldPassword" className="mr-2 text-white">Old Password:</label>
       <input
         type={showOldPassword ? "text" : "password"}
         id="oldPassword"
@@ -253,7 +253,7 @@ const Profile = (props) => {
       </button>
     </div>
     <div className="mb-2">
-      <label htmlFor="newPassword" className="mr-2">New Password: (at least 8 characters)</label>
+      <label htmlFor="newPassword" className="mr-2 text-white">New Password: (at least 8 characters)</label>
       <input
         type={showNewPassword1 ? "text" : "password"}
         id="newPassword"
@@ -267,7 +267,7 @@ const Profile = (props) => {
       </button>
     </div>
     <div className="mb-2">
-      <label htmlFor="newPassword2" className="mr-2">Repeat new Password:</label>
+      <label htmlFor="newPassword2" className="mr-2 text-white">Repeat new Password:</label>
       <input
         type={showNewPassword2 ? "text" : "password"}
         id="newPassword2"

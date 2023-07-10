@@ -20,7 +20,7 @@ const Sidebar = (props: ISidebar) => {
   useOuterClick(sidebarRef, handleOuterClick);
 
   return (
-    <div className="col-span-5 bg-grey-dark px-3 h-full relative flex flex-col" ref={sidebarRef}>
+    <div className="col-span-5 bg-nicepurple px-3 h-full relative flex flex-col" ref={sidebarRef}>
       <ChatAccordion currentRoomId={currentRoomId} setRoomId={setRoomId} setNewChatOpen={setNewChatOpen} />
       {children}
       <div className='w-full flex flex-col h-full pb-6'>
@@ -30,7 +30,7 @@ const Sidebar = (props: ISidebar) => {
     {
         user?.id &&
         <Link 
-        className='mt-auto text-center w-full py-3 border-gray-600 bg-grey-medium text-white hover:bg-grey-medium/70 rounded-lg shadow-md transition-all duration-200 ease-in-out font-semibold mb-2' 
+        className='mt-auto text-center w-full py-3 border-gray-600 bg-purple text-white hover:bg-grey-medium/70 rounded-lg shadow-md transition-all duration-200 ease-in-out font-semibold mb-2' 
         href={`/users/${user?.id}`} target='_'>
             Your Profile
         </Link>

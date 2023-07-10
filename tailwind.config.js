@@ -52,7 +52,9 @@ module.exports = {
       brown: "#806C6C",
       white: "#ffffff",
       purple: "#9974E7",
+      nicepurple: "#414567",
       red: "#E53935",
+      viktig_green: '#A9E8D2',
     },
   },
   plugins: [

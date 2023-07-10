@@ -131,7 +131,7 @@ const MessageInput = (props: IMessageInput) => {
                     <Picker onEmojiClick={handleEmojiClick}  />
                     </div>
             }
-                <div className="overflow-hidden w-full bg-brown rounded-lg flex items-center p-1">
+                <div className="overflow-hidden w-full bg-grey-dark rounded-lg flex items-center p-1">
                     <div className="py-1 px-3">
                         <button onClick={() => { setOpenEmoji(true) }}>
                             <Emoji />
@@ -139,7 +139,7 @@ const MessageInput = (props: IMessageInput) => {
                     </div>
                     <div className="flex items-center flex-1">
                         <textarea
-                            className="message-input flex-1 bg-brown text-3xl text-white placeholder-white outline-none py-2 pl-6 pr-10 resize-none"
+                            className="message-input flex-1 bg-grey-dark text-3xl text-white placeholder-white outline-none py-2 pl-6 pr-10 resize-none"
                             placeholder="Message"
                             value={msgText}
                             onChange={handleChange}
