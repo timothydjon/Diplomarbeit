@@ -13,11 +13,6 @@ module.exports = {
     "./components/**/*.{js,jsx,ts,tsx}",
     "./layouts/**/*.{js,jsx,ts,tsx}",
   ],
-  variants: {
-    extend: {
-      textOverflow: ['truncate'],
-    },
-  },
   theme: {
     extend: {
       gridTemplateColumns: {
@@ -55,7 +50,5 @@ module.exports = {
       red: "#E53935",
     },
   },
-  plugins: [
-    require('@tailwindcss/line-clamp')
-  ],
+  plugins: [],
 };
