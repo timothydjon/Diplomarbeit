@@ -30,7 +30,7 @@ const Sidebar = (props: ISidebar) => {
     {
         user?.id &&
         <Link 
-        className='mt-auto text-center w-full py-3 border-gray-600 bg-purple text-white hover:bg-grey-medium/70 rounded-lg shadow-md transition-all duration-200 ease-in-out font-semibold mb-2' 
+        className='mt-auto text-center w-full py-3 border-gray-600 bg-grey-soft text-black hover:bg-grey-medium/70 rounded-lg shadow-md transition-all duration-200 ease-in-out font-semibold mb-2' 
         href={`/users/${user?.id}`} target='_'>
             Your Profile
         </Link>

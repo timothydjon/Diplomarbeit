@@ -288,7 +288,7 @@ const Profile = (props) => {
           Save
         </button>
         )}
-        {message && <p className="text-purple mt-2 font-black">{message}</p>}
+        {message && <p className="text-black mt-2 font-black">{message}</p>}
       </div>
       }
     

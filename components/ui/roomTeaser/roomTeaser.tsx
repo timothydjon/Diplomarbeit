@@ -104,7 +104,9 @@ const RoomTeaser = (props: IRoomTeaser) => {
         </div>
         <div className="ml-4 flex flex-col justify-between items-start h-full">
           <span className="text-white text-2xl font-semibold">{roomName}</span>
-          <span className="text-grey-light text-xl ml-1 mt-1 truncate overflow-hidden">{displayMessage}</span>
+          <span className="text-grey-light text-xl ml-1 mt-1 truncate overflow-hidden whitespace-nowrap" style={{ maxWidth: '160px' }}>
+  {displayMessage}
+</span>
 
         </div>
       </div>
